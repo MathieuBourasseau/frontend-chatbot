@@ -3,6 +3,7 @@ import { ImCross } from "react-icons/im";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaSearch } from "react-icons/fa";
 import { CiCirclePlus } from "react-icons/ci";
+import PanelButton from "./PanelButton";
 
 
 export default function Panel() {
@@ -26,23 +27,19 @@ export default function Panel() {
             {/* OPEN/CLOSE PANEL */}
             <div className="flex justify-between items-center">
 
-                <button 
+                <PanelButton
                     onClick={togglePanel}
-                    className="cursor-pointer text-lg"
-                >
-                    {isOpen ? <ImCross /> : <GiHamburgerMenu />}
-                </button>
+                    icon={isOpen ? <ImCross /> :<GiHamburgerMenu />}
+                    show={true}
+                />
 
                 {/* SEARCH FORMER CHATS */}
-                <button>
-                    <FaSearch 
-                        className={`
-                        transition-all ease-in-out
-                        ${isOpen ? 
-                        "opacity-100 duration-200 delay-100" :
-                        "opacity-0 delay-0 duration-0"}`} 
-                    />
-                </button>
+
+                <PanelButton
+                    show={isOpen}
+                    icon={<FaSearch />}
+                    delay="delay-150"
+                />
             </div>
 
             {/* NEW CHAT */}
@@ -58,6 +55,7 @@ export default function Panel() {
                         "opacity-0  delay-0 duration-0"}
                         `}
                     >Lancer un nouveau chat</span>
+                    
                 </button>
             </div>
 
