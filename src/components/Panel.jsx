@@ -1,14 +1,15 @@
 import React from 'react'
+import { ImCross } from "react-icons/im";
 
 export default function Panel() {
     return (
         <aside className="h-screen flex flex-col gap-4 bg-teal-200 max-w-[300px] p-4">
 
             {/* OPEN/CLOSE PANEL */}
-            <div className="flex justify-between">
+            <div className="flex justify-between items-center">
 
                 {/* OPEN OR CLOSE PANEL */}
-                <span>Fermer</span>
+                <ImCross />
 
                 {/* SEARCH FORMER CHATS */}
                 <span>Recherche</span>
