@@ -33,7 +33,7 @@ export default function Panel() {
 
                 {/* SEARCH FORMER CHATS */}
                 <button>
-                    <FaSearch className={isOpen ? "block" : "hidden"} />
+                    <FaSearch className={isOpen ? "opacity-100" : "opacity-0"} />
                 </button>
             </div>
 
@@ -41,25 +41,25 @@ export default function Panel() {
             <div>
                 <button
                     onClick={togglePanel}
-                    className="flex items-center gap-4 cursor-pointer font-bold"
+                    className="flex items-center gap-4 cursor-pointer font-bold whitespace-nowrap overflow-hidden"
                 >
                     <CiCirclePlus className="text-lg" strokeWidth={2} />
                     {isOpen && 
-                        <span>Lancer un nouveau chat</span>
+                        <span className="">Lancer un nouveau chat</span>
                     }
                 </button>
             </div>
 
             {/* CHATS BLOC*/}
-            <div className={isOpen ? "block" : "hidden"}>
+            <div className={isOpen ? "opacity-100 whitespace-nowrap" : "opacity-0"}>
                 <h2 className="font-semibold">Chats</h2>
                 <div>
-                    <h2>Titre</h2>
-                    <h2>Titre</h2>
-                    <h2>Titre</h2>
-                    <h2>Titre</h2>
-                    <h2>Titre</h2>
-                    <h2>Titre</h2>
+                    <h2>Lorem ipsum dolor sit amet.</h2>
+                    <h2>Lorem ipsum dolor sit amet.</h2>
+                    <h2>Lorem ipsum dolor sit amet.</h2>
+                    <h2>Lorem ipsum dolor sit amet.</h2>
+                    <h2>Lorem ipsum dolor sit amet.</h2>
+                    <h2>Lorem ipsum dolor sit amet.</h2>
                 </div>
             </div>
         </aside>
