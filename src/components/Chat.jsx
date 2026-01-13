@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FaArrowUp } from "react-icons/fa";
 
 export default function Chat() {
@@ -10,6 +10,12 @@ export default function Chat() {
     { sender: "ai", text: "Il fait aujourd'hui 10°C dans la ville de Clisson." },
     { sender: "user", text: "Va-t-il pleuvoir aujourd'hui ?" },
   ]
+
+  // Handling form messages 
+
+  const [message, setMessage] = useState('');
+
+
 
   return (
     <main className="flex flex-col flex-1 h-screen items-center p-4">
@@ -41,11 +47,16 @@ export default function Chat() {
         action=""
         className="max-w-[850px] h-[150px] w-full border-2 border-gray-200 p-4 rounded-lg shadow-sm">
         <div className="flex h-full">
+
+          {/* USER MESSAGES */}
           <textarea
             type="text"
             placeholder="Ecrivez votre question."
             className="h-full flex-1 outline-none resize-none pt-0"
+            value={message}
           />
+
+          {/* BUTTON TO SEND MESSAGE */}
           <button className="self-end cursor-pointer bg-[#f8532a] p-2">
             <FaArrowUp className="text-white" />
           </button>
