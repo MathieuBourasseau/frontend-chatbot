@@ -32,7 +32,7 @@ export default function Chat() {
   }
 
   // Handle new message sent in the form 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent the form event by default
 
     if(message.trim() === "") return; // Prevent the user to send empty message
@@ -43,6 +43,7 @@ export default function Chat() {
 
     setMessage(''); // Textarea is cleared of its content
 
+    
   }
 
   return (
