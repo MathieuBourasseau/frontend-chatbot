@@ -17,6 +17,9 @@ export default function Chat() {
  // Define a state to get an empty textarea by default
   const [message, setMessage] = useState(''); 
 
+// Define a state to get the chat ID 
+const [currentChatId, setCurrentChatId] = useState(null);
+
  // Update value in the textarea
   const handleMessage = (e) => {
     setMessage(e.target.value)
@@ -61,6 +64,9 @@ export default function Chat() {
 
       // Update the list of messages 
       setMessages((prev) => [ ...prev, mistralAnswer]);
+
+      // Identify the chat of the current conversation
+      setCurrentChatId(data.chat.id);
 
   }
 
