@@ -9,7 +9,8 @@ export default function Chat() {
   ]
 
   // Define a state to get a chat title by default 
-  const [title, setTitle] = useState("Nouveau chat")
+  const [title, setTitle] = useState("Nouveau chat");
+
   // Define a state to get a simulation of chat by default 
   const [messages, setMessages] = useState(chatTest);
 
@@ -32,8 +33,6 @@ export default function Chat() {
       handleSubmit(e);
     }
   }
-
-
 
   // Handle new message sent in the form 
   const handleSubmit = async (e) => {
@@ -81,7 +80,8 @@ export default function Chat() {
     // Identify the chat of the current conversation
     if (data.chat) {
       setCurrentChatId(data.chat.id);
-    }
+      setTitle(data.chat.name);
+    };
 
   }
 
