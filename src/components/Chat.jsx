@@ -58,7 +58,7 @@ export default function Chat() {
     // FETCHING TO THE GOOD URL WITH GOOD CONTENT
     if (currentChatId) {
       url = `http://localhost:5173/api/chats/${currentChatId}/messages`;
-      bodyData = { NewUserMessage: message };
+      bodyData = { newUserMessage: message };
     }
 
     // FETCHING message to Mistral API 
@@ -79,7 +79,6 @@ export default function Chat() {
 
     // Identify the chat of the current conversation
     if (data.chat) {
-
       setCurrentChatId(data.chat.id);
     }
 
