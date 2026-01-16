@@ -5,13 +5,16 @@ import Chat from "./components/Chat"
 
 function App() {
 
-  // --- STATE FOR THE CURRENT CHAT ---
+  // --- DEFINE THE STATES ---
   const [currentChatId, setCurrentChatId] = useState(null);
+  const [chatsList, setChatsList] = useState([]);
+
+  // --- SHOW ALL THE CHATS HISTORY ---
 
   return (
     <div className="flex">
-      <Panel setCurrentChatId={setCurrentChatId} /> 
-      <Chat currentChatId={currentChatId} setCurrentChatId={setCurrentChatId} />
+      <Panel setCurrentChatId={setCurrentChatId} chatsList={chatsList} setChatsList={setChatsList} /> 
+      <Chat currentChatId={currentChatId} setCurrentChatId={setCurrentChatId} setChatsList={setChatsList} />
     </div>
   )
 }
