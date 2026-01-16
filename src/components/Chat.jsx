@@ -127,12 +127,15 @@ export default function Chat({currentChatId, setCurrentChatId, setChatsList}) {
 
   }
 
+  // Put a default title if the chat does not exist
+  const displayTitle = currentChatId ? title : "Nouveau chat"
+
   return (
     <main className="flex flex-col flex-1 h-screen items-center p-4">
 
       {/* CHAT TITLE */}
       <header className="p-4 border-b">
-        <h1 className="font-bold shrink-0">{title}</h1>
+        <h1 className="font-bold shrink-0">{displayTitle}</h1>
       </header>
 
       {/* CHAT MESSAGES */}
