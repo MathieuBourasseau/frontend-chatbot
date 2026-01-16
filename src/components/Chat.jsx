@@ -130,7 +130,7 @@ export default function Chat({currentChatId, setCurrentChatId, setChatsList, cha
   const currentTitle = currentChatTitle ? currentChatTitle.name : "Nouveau chat";
 
   return (
-    <main className="flex flex-col flex-1 h-screen items-center p-4">
+    <main className="flex flex-col flex-1 gap-8 h-screen items-center p-4">
 
       {/* CHAT TITLE */}
       <header className="p-4 border-b">
@@ -143,10 +143,10 @@ export default function Chat({currentChatId, setCurrentChatId, setChatsList, cha
         {messages.map((msg, i) => (
           <div
             key={i}
-            className={`p-4 max-w-[70%] shadow-sm rounded-lg
+            className={`p-4 max-w-[70%]
               ${msg.sender === "user"
-                ? "self-end bg-[#003c57] text-white"
-                : "self-start border-gray-200"
+                ? "self-end bg-[#003c57] shadow-sm text-white rounded-lg rounded-tr-none"
+                : "self-start"
               }`}
           >
             {msg.text}
