@@ -12,7 +12,7 @@ export default function Chat() {
   const [title, setTitle] = useState("Nouveau chat"); // Title by default for a new chat 
   const [messages, setMessages] = useState(chatTest);
   const [message, setMessage] = useState(''); // Message is empty by default
-  const [currentChatId, setCurrentChatId] = useState(1);
+  
 
   // --- SHOW THE CHAT HISTORY WHEN ID CHANGES ---
   useEffect(() => {
