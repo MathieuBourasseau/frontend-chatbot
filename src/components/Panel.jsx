@@ -6,7 +6,7 @@ import { CiCirclePlus } from "react-icons/ci";
 import PanelButton from "./PanelButton";
 
 
-export default function Panel({setCurrentChatId}) {
+export default function Panel({setCurrentChatId, chatsList, setChatsList}) {
 
     // Menu is closed by default
     const [isOpen, setIsOpen] = useState(false);
