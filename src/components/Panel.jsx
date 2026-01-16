@@ -6,7 +6,7 @@ import { CiCirclePlus } from "react-icons/ci";
 import PanelButton from "./PanelButton";
 
 
-export default function Panel({setCurrentChatId, chatsList, setChatsList}) {
+export default function Panel({ setCurrentChatId, chatsList, setChatsList }) {
 
     // Menu is closed by default
     const [isOpen, setIsOpen] = useState(false);
@@ -17,9 +17,9 @@ export default function Panel({setCurrentChatId, chatsList, setChatsList}) {
     };
 
     return (
-        <aside 
+        <aside
             className={
-            `h-screen flex flex-col gap-8 bg-[#003c57] p-4 transition-all duration-200 ease-in-out
+                `h-screen flex flex-col gap-8 bg-[#003c57] p-4 transition-all duration-200 ease-in-out
             ${isOpen ? "w-[300px]" : "w-[50px]"}`}
         >
 
@@ -28,7 +28,7 @@ export default function Panel({setCurrentChatId, chatsList, setChatsList}) {
 
                 <PanelButton
                     onClick={togglePanel}
-                    icon={isOpen ? <ImCross className="text-white" /> :<GiHamburgerMenu className="text-white" />}
+                    icon={isOpen ? <ImCross className="text-white" /> : <GiHamburgerMenu className="text-white" />}
                     show={true}
                 />
 
@@ -51,27 +51,34 @@ export default function Panel({setCurrentChatId, chatsList, setChatsList}) {
                     <span className={`
                         transition-all 
                         ${isOpen ? "duration-200 delay-30 opacity-100 text-white" :
-                        "opacity-0  delay-0 duration-0"}
+                            "opacity-0  delay-0 duration-0"}
                         `}
                     >Lancer un nouveau chat</span>
-                    
+
                 </button>
             </div>
 
             {/* CHATS BLOC*/}
             <div className={`
                 transition-all
-                ${isOpen ? "duration-200 delay-10 opacity-100 whitespace-nowrap text-white" : 
-                "opacity-0 delay-0 duration-0"}
+                ${isOpen ? "duration-200 delay-10 opacity-100 whitespace-nowrap text-white" :
+                    "opacity-0 delay-0 duration-0"}
                 `}>
                 <h2 className="font-semibold text-lg">Chats</h2>
-                <div>
-                    <h2>Lorem ipsum dolor sit amet.</h2>
-                    <h2>Lorem ipsum dolor sit amet.</h2>
-                    <h2>Lorem ipsum dolor sit amet.</h2>
-                    <h2>Lorem ipsum dolor sit amet.</h2>
-                    <h2>Lorem ipsum dolor sit amet.</h2>
-                    <h2>Lorem ipsum dolor sit amet.</h2>
+                <div
+                    className="flex flex-col gap-4 items-start"
+                >
+
+                    {/* FETCH CHATS TO THE FRONT */}
+                    {chatsList && chatsList.map(chat => (
+                        <button
+                            key={chat.id}
+                            onClick={() => setCurrentChatId(chat.id)}
+                            className=" w-full text-left cursor-pointer"
+                        >
+                            <span className="block truncate text-white">{chat.name}</span>
+                        </button>
+                    ))}
                 </div>
             </div>
         </aside>

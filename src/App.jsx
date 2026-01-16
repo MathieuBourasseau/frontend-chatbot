@@ -23,7 +23,7 @@ function App() {
 
         const data = await response.json();
 
-        setChatsList(data);
+        setChatsList(data); // Show all the conversation in the panel
 
       } catch (error) {
         console.error("Erreur lors de l'affichage de la liste des chats.", error);
@@ -31,6 +31,7 @@ function App() {
     }
     
       fetchChatsHistory();
+      
   }, []);
 
   return (
