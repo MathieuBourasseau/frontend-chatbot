@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { FaArrowUp } from "react-icons/fa";
 
-export default function Chat() {
+export default function Chat({currentChatId, setCurrentChatId}) {
 
   // Data simulation : 
   const chatTest = [
