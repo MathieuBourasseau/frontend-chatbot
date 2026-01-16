@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div className="flex">
-      <Panel setCurrentChatId={setCurrentChatId} />
+      <Panel setCurrentChatId={setCurrentChatId} /> 
       <Chat currentChatId={currentChatId} setCurrentChatId={setCurrentChatId} />
     </div>
   )
