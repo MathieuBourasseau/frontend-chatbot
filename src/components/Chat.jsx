@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaArrowUp } from "react-icons/fa";
 
 export default function Chat() {
@@ -8,17 +8,47 @@ export default function Chat() {
     { sender: "ai", text: "Bonjour, comment puis-je vous aider aujourd'hui ? 😊" },
   ]
 
-  // Define a state to get a chat title by default 
-  const [title, setTitle] = useState("Nouveau chat");
-
-  // Define a state to get a simulation of chat by default 
+  // --- DEFINE THE STATES --- 
+  const [title, setTitle] = useState("Nouveau chat"); // Title by default for a new chat 
   const [messages, setMessages] = useState(chatTest);
+  const [message, setMessage] = useState(''); // Message is empty by default
+  const [currentChatId, setCurrentChatId] = useState(1);
 
-  // Define a state to get an empty textarea by default
-  const [message, setMessage] = useState('');
+  // --- SHOW THE CHAT HISTORY WHEN ID CHANGES ---
+  useEffect(() => {
 
-  // Define a state to get the chat ID 
-  const [currentChatId, setCurrentChatId] = useState(null);
+    // Function to execute when the chat ID is changing
+    const fetchChatHistory = async () => {
+
+      try {
+        const response = await fetch(`http://localhost:3001/api/chats/${currentChatId}/messages`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': "application/json",
+          }
+        });
+
+        const data = await response.json();
+
+        // Formatting the data to match with front keys
+        const formattedMessages = data.map(msg => ({
+          sender: msg.role === "assistant" ? "ai" : "user",
+          text: msg.content
+        }));
+
+        // Show the messages in the chat
+        setMessages(formattedMessages);
+
+      } catch (error) {
+        console.error("Erreur lors de la récupération des messages de la conversation.", error);
+      }
+    };
+
+    // Execute this function only if currentChatId is true
+    if (currentChatId) {
+      fetchChatHistory();
+    }
+  }, [currentChatId]); // // Watch currentChatId and re-run the effect on change
 
   // Update value in the textarea
   const handleMessage = (e) => {
@@ -42,8 +72,9 @@ export default function Chat() {
     // Bodydata by default 
     let bodyData = { firstMessage: message, user_id: 1 }
 
-
     e.preventDefault(); // Prevent the form event by default
+
+
 
     if (message.trim() === "") return; // Prevent the user to send empty message
 
@@ -64,7 +95,7 @@ export default function Chat() {
       {
         method: "POST", // Add message to database
         headers: {
-          'Content-type': 'application/json', // JSON content sent 
+          'Content-Type': 'application/json', // JSON content sent 
         },
         body: JSON.stringify(bodyData)
       });
