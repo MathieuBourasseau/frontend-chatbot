@@ -39,9 +39,6 @@ export default function Chat({currentChatId, setCurrentChatId, setChatsList, cha
         // Show the messages in the chat
         setMessages(formattedMessages);
 
-        // Show the title of the chat
-        setTitle()
-
       } catch (error) {
         console.error("Erreur lors de la récupération des messages de la conversation.", error);
       }
@@ -55,7 +52,6 @@ export default function Chat({currentChatId, setCurrentChatId, setChatsList, cha
     // Reset the chat if currentChatId is null
     if (!currentChatId){
       setMessages([]); // Empty the list of messages
-      setTitle('Nouveau chat');
     }
   }, [currentChatId]); // // Watch currentChatId and re-run the effect on change
 
@@ -83,8 +79,6 @@ export default function Chat({currentChatId, setCurrentChatId, setChatsList, cha
     let bodyData = { firstMessage: message, user_id: 1 }
 
     e.preventDefault(); // Prevent the form event by default
-
-
 
     if (message.trim() === "") return; // Prevent the user to send empty message
 
@@ -131,7 +125,7 @@ export default function Chat({currentChatId, setCurrentChatId, setChatsList, cha
 
   }
 
-  // Display the title chat
+  // SHOW THE TITLE CHAT
   const currentChatTitle = chatsList.find(chat => chat.id === currentChatId);
   const currentTitle = currentChatTitle ? currentChatTitle.name : "Nouveau chat";
 

@@ -63,11 +63,11 @@ export default function Panel({ setCurrentChatId, chatsList, setChatsList }) {
 
             {/* CHATS BLOC*/}
             <div className={`
-                transition-all
+                transition-all flex flex-col gap-4
                 ${isOpen ? "duration-200 delay-10 opacity-100 whitespace-nowrap text-white" :
                     "opacity-0 delay-0 duration-0"}
                 `}>
-                <h2 className="font-semibold text-lg">Chats</h2>
+                <h2 className="font-bold text-xl">Chats</h2>
                 <div
                     className="flex flex-col gap-4 items-start"
                 >
@@ -77,7 +77,7 @@ export default function Panel({ setCurrentChatId, chatsList, setChatsList }) {
                         <button
                             key={chat.id}
                             onClick={() => setCurrentChatId(chat.id)}
-                            className=" w-full text-left cursor-pointer"
+                            className="rounded-lg w-full text-left cursor-pointer font-semibold hover:bg-[#F8532A] py-2 pl-2"
                         >
                             <span className="block truncate text-white">{chat.name}</span>
                         </button>
