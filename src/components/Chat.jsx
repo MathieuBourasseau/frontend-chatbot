@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { FaArrowUp } from "react-icons/fa";
 import { motion } from "framer-motion";
 
@@ -12,6 +12,9 @@ export default function Chat({ currentChatId, setCurrentChatId, setChatsList, ch
   // --- DEFINE THE STATES --- 
   const [messages, setMessages] = useState(chatTest);
   const [message, setMessage] = useState(''); // Message is empty by default
+
+  // --- DEFINE THE REF ---
+  const messagesEndRef = useRef(null)
 
 
   // --- SHOW THE CHAT HISTORY WHEN ID CHANGES ---
