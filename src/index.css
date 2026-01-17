@@ -2,3 +2,21 @@
 @theme {
     --font-sans: "Roboto", sans-serif;
 }
+
+/* CUSTOMIZATION OF SCROLLBAR */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 7px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent; /* Fond invisible */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #1e293b; 
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}

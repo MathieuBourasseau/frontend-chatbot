@@ -63,6 +63,7 @@ export default function Panel({ setCurrentChatId, chatsList, setChatsList }) {
 
             {/* CHATS BLOC*/}
             <div className={`
+                custom-scrollbar
                 transition-all flex flex-col gap-4 overflow-y-auto
                 ${isOpen ? "duration-200 delay-10 opacity-100 whitespace-nowrap text-white" :
                     "opacity-0 delay-0 duration-0"}
