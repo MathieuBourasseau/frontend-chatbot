@@ -92,7 +92,7 @@ export default function Chat({ currentChatId, setCurrentChatId, setChatsList, ch
 
     setMessage(''); // Textarea is cleared of its content
 
-    // FETCHING TO THE GOOD URL WITH GOOD CONTENT
+    // FETCHING TO THE GOOD URL WITH GOOD CHAT CONTENT
     if (currentChatId) {
       url = `http://localhost:3001/api/chats/${currentChatId}/messages`;
       bodyData = { newUserMessage: message };
@@ -159,6 +159,7 @@ export default function Chat({ currentChatId, setCurrentChatId, setChatsList, ch
               {msg.text}
             </div>
           ))}
+          <div ref={messagesEndRef}></div> 
         </div>
       ) : (
         <motion.div
