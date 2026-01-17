@@ -16,7 +16,6 @@ export default function Chat({ currentChatId, setCurrentChatId, setChatsList, ch
   // --- DEFINE THE REF ---
   const messagesEndRef = useRef(null)
 
-
   // --- SHOW THE CHAT HISTORY WHEN ID CHANGES ---
 
   useEffect(() => {
@@ -58,6 +57,17 @@ export default function Chat({ currentChatId, setCurrentChatId, setChatsList, ch
       setMessages([]); // Empty the list of messages
     }
   }, [currentChatId]); // // Watch currentChatId and re-run the effect on change
+
+
+  // --- SCROLL EFFECT WHEN MISTRAL IS ANSWERING --- 
+
+  useEffect(() => {
+    
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+
+  }, [messages])
+
+
 
   // Update value in the textarea
   const handleMessage = (e) => {
