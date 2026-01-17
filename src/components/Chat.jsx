@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { FaArrowUp } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 export default function Chat({ currentChatId, setCurrentChatId, setChatsList, chatsList }) {
 
@@ -157,9 +158,13 @@ export default function Chat({ currentChatId, setCurrentChatId, setChatsList, ch
           ))}
         </div>
       ) : (
-        <div className="flex  justify-center items-center">
-          <h2 className="text-[35px] text-[#003C57]">Bonjour comment puis-je vous aider aujourd'hui ? 😊</h2>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "backOut" }}
+          className="flex  justify-center items-center">
+          <h2 className="text-[35px] text-[#003C57]">Bonjour comment puis-je vous aider aujourd'hui ?</h2>
+        </motion.div>
       )
       }
 
