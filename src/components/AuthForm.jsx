@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { FaUserCircle } from "react-icons/fa";
 
 export default function AuthForm() {
 
@@ -7,7 +8,20 @@ export default function AuthForm() {
 
     return (
         <div>
-            Je suis un formulaire
+
+            {/* SHOW REGISTER OR LOGIN FORM */}
+            <form action="">
+                <legend>Connexion</legend>
+                <fieldset>
+                    <div>
+                        <input 
+                            type="text" 
+                            placeholder="Nom d'utilisateur" 
+                        />
+                        <FaUserCircle />
+                    </div>
+                </fieldset>
+            </form>
         </div>
     )
 }
