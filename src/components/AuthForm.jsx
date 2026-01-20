@@ -7,7 +7,7 @@ export default function AuthForm() {
 
     return (
         <div>
-
+            Je suis un formulaire
         </div>
     )
 }

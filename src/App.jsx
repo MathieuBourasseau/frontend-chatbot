@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Panel from './components/Panel'
 import Chat from "./components/Chat"
+import AuthForm from "./components/AuthForm";
 
 function App() {
 
@@ -36,8 +37,9 @@ function App() {
 
   return (
     <div className="flex">
-      <Panel setCurrentChatId={setCurrentChatId} chatsList={chatsList} setChatsList={setChatsList} /> 
-      <Chat currentChatId={currentChatId} setCurrentChatId={setCurrentChatId} setChatsList={setChatsList} chatsList={chatsList} />
+      {/* <Panel setCurrentChatId={setCurrentChatId} chatsList={chatsList} setChatsList={setChatsList} /> 
+      <Chat currentChatId={currentChatId} setCurrentChatId={setCurrentChatId} setChatsList={setChatsList} chatsList={chatsList} /> */}
+      <AuthForm />
     </div>
   )
 }
