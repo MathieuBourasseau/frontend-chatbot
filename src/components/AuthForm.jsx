@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { FaUserCircle } from "react-icons/fa";
+import { FaAt } from "react-icons/fa";
 
 export default function AuthForm() {
 
@@ -13,6 +14,8 @@ export default function AuthForm() {
             <form action="">
                 <legend>Connexion</legend>
                 <fieldset>
+
+                    {/* USERNAME INPUT */}
                     <div>
                         <input 
                             type="text" 
@@ -20,6 +23,27 @@ export default function AuthForm() {
                         />
                         <FaUserCircle />
                     </div>
+
+                    {/* EMAIL INPUT */}
+                    <div>
+                        <input 
+                            type="email" 
+                            placeholder="monadresse@mail.com" 
+                        />
+                        <FaAt />
+                    </div>
+
+                    {/* PASSWORD INPUT */}
+                   <div>
+                        <input 
+                            type="password" 
+                            placeholder="Mot de passe" 
+                        />
+                        <FaAt />
+                    </div>
+
+                    <p>Pas encore de compte ? S'inscrire</p>
+
                 </fieldset>
             </form>
         </div>
