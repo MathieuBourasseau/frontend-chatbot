@@ -13,11 +13,11 @@ export default function AuthForm() {
 
             {/* SHOW REGISTER OR LOGIN FORM */}
             <form action="" className="flex flex-col items-center h-auto bg-red-600 p-6 rounded-xl gap-4">
-                <legend className="">Connexion</legend>
+                <legend className="text-lg font-bold">Connexion</legend>
                 <fieldset className="flex flex-col gap-4">
 
                     {/* USERNAME INPUT */}
-                    <div className="flex items-center p-2 justify-between border-2 rounded-xl">
+                    <div className="flex items-center p-2 justify-between border-2 rounded-xl text-sm">
                         <input 
                             type="text" 
                             placeholder="Nom d'utilisateur" 
@@ -27,7 +27,7 @@ export default function AuthForm() {
                     </div>
 
                     {/* EMAIL INPUT */}
-                    <div className="flex items-center p-2 justify-between border-2 rounded-xl">
+                    <div className="flex items-center p-2 justify-between border-2 rounded-xl text-sm">
                         <input 
                             type="email" 
                             placeholder="monadresse@mail.com" 
@@ -37,7 +37,7 @@ export default function AuthForm() {
                     </div>
 
                     {/* PASSWORD INPUT */}
-                   <div className="flex items-center p-2 justify-between border-2 rounded-xl">
+                   <div className="flex items-center p-2 justify-between border-2 rounded-xl text-sm">
                         <input 
                             type="password" 
                             placeholder="Mot de passe" 
@@ -46,7 +46,19 @@ export default function AuthForm() {
                         <FaEye />
                     </div>
 
-                    <p>Pas encore de compte ? S'inscrire</p>
+                    {/* SAVE USER INFORMATION OR FORGOT PASSWORD */}
+                    <div className="flex gap-2 text-sm">
+                        <input type="checkbox" /> Se souvenir de moi
+                        <button>Mot de passe oublié ?</button>
+                    </div>
+
+                    {/* CONNECTION */}
+                    <button>
+                        Se connecter
+                    </button>
+
+                    {/* REGISTER */}
+                    <button>Pas encore de compte ? S'inscrire</button>
 
                 </fieldset>
             </form>
