@@ -58,7 +58,7 @@ export default function AuthForm() {
 
                     {/* CONNECTION */}
                     <button
-                        className="bg-gray-300 p-2 rounded-full"
+                        className="bg-gray-300 p-2 font-bold rounded-full"
                     >
                         Se connecter
                     </button>
