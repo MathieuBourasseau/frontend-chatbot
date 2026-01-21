@@ -18,7 +18,7 @@ export default function AuthForm() {
             {/* SHOW REGISTER OR LOGIN FORM */}
             <form 
                 action="" 
-                className="z-10 flex flex-col items-center h-auto bg-transparent border-1 border-gray-300 p-6 rounded-xl gap-4">
+                className="z-10 flex flex-col items-center h-auto bg-transparent backdrop-blur-xs border-1 border-gray-300 p-6 rounded-xl gap-4 ">
                 <legend className="text-lg font-bold text-white">Connexion</legend>
                 <fieldset className="flex flex-col gap-4">
 
