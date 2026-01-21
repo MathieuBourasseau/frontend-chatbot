@@ -25,7 +25,7 @@ export default function AuthForm() {
                             placeholder="Nom d'utilisateur" 
                             className="placeholder-white outline-none"
                         />
-                        <FaUserCircle />
+                        <FaUserCircle className="text-white" />
                     </div>
 
                     {/* EMAIL INPUT */}
@@ -35,7 +35,7 @@ export default function AuthForm() {
                             placeholder="monadresse@mail.com" 
                             className="placeholder-white outline-none"
                         />
-                        <FaAt />
+                        <FaAt className="text-white" />
                     </div>
 
                     {/* PASSWORD INPUT */}
@@ -45,7 +45,7 @@ export default function AuthForm() {
                             placeholder="Mot de passe" 
                             className="placeholder-white outline-none"
                         />
-                        <FaEye />
+                        <FaEye className="text-white" />
                     </div>
 
                     {/* SAVE USER INFORMATION OR FORGOT PASSWORD */}
@@ -60,7 +60,12 @@ export default function AuthForm() {
                     </button>
 
                     {/* REGISTER */}
-                    <button>Pas encore de compte ? S'inscrire</button>
+                    <button>
+                        Pas encore de compte ? 
+                        <span className="font-bold">
+                            S'inscrire
+                        </span>
+                    </button>
 
                 </fieldset>
             </form>
