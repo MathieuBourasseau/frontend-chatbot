@@ -9,39 +9,41 @@ export default function AuthForm() {
     const [isRegister, setIsRegister] = useState(false);
 
     return (
-        <div className="flex items-start justify-center bg-blue-200 min-h-screen w-full pt-20">
+        <div className="flex items-start justify-center bg-[#003c57] min-h-screen w-full pt-20">
 
             {/* SHOW REGISTER OR LOGIN FORM */}
-            <form action="" className="flex flex-col items-center h-auto bg-red-600 p-6 rounded-xl gap-4">
-                <legend className="text-lg font-bold">Connexion</legend>
+            <form 
+                action="" 
+                className="flex flex-col items-center h-auto bg-transparent border-1 border-gray-300 p-6 rounded-xl gap-4">
+                <legend className="text-lg font-bold text-white">Connexion</legend>
                 <fieldset className="flex flex-col gap-4">
 
                     {/* USERNAME INPUT */}
-                    <div className="flex items-center p-2 justify-between border-2 rounded-xl text-sm">
+                    <div className="flex items-center p-2 justify-between border-2 border-gray-300 rounded-xl text-sm bg-transparent">
                         <input 
                             type="text" 
                             placeholder="Nom d'utilisateur" 
-                            className="outline-none"
+                            className="placeholder-white outline-none"
                         />
                         <FaUserCircle />
                     </div>
 
                     {/* EMAIL INPUT */}
-                    <div className="flex items-center p-2 justify-between border-2 rounded-xl text-sm">
+                    <div className="flex items-center p-2 justify-between border-2 border-gray-300 bg-transparent rounded-xl text-sm">
                         <input 
                             type="email" 
                             placeholder="monadresse@mail.com" 
-                            className="outline-none"
+                            className="placeholder-white outline-none"
                         />
                         <FaAt />
                     </div>
 
                     {/* PASSWORD INPUT */}
-                   <div className="flex items-center p-2 justify-between border-2 rounded-xl text-sm">
+                   <div className="flex items-center p-2 justify-between border-2 border-gray-300 bg-transparent rounded-xl text-sm">
                         <input 
                             type="password" 
                             placeholder="Mot de passe" 
-                            className="outline-none"
+                            className="placeholder-white outline-none"
                         />
                         <FaEye />
                     </div>
