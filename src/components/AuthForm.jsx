@@ -49,21 +49,25 @@ export default function AuthForm() {
                     </div>
 
                     {/* SAVE USER INFORMATION OR FORGOT PASSWORD */}
-                    <div className="flex gap-2 text-sm">
+                    <div className="flex gap-2 text-sm text-white">
                         <input type="checkbox" /> Se souvenir de moi
-                        <button>Mot de passe oublié ?</button>
+                        <button
+                            className="cursor-pointer font-bold"
+                        >Mot de passe oublié ?</button>
                     </div>
 
                     {/* CONNECTION */}
-                    <button>
+                    <button
+                        className="bg-gray-300 p-2 rounded-full"
+                    >
                         Se connecter
                     </button>
 
                     {/* REGISTER */}
                     <button>
-                        Pas encore de compte ? 
+                        Pas encore de compte ? {''} 
                         <span className="font-bold">
-                            S'inscrire
+                           S'inscrire
                         </span>
                     </button>
 
