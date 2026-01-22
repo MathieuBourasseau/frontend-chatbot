@@ -73,7 +73,7 @@ export default function AuthForm() {
 
                     {/* REGISTER */}
                     <button
-                        className="text-white"
+                        className="text-white text-sm"
                         type="button"
                     >
                         Pas encore de compte ? {''} 
