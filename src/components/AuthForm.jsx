@@ -10,8 +10,10 @@ export default function AuthForm() {
     // --- DEFINE STATES --- 
     const [isRegister, setIsRegister] = useState(false); // User is not connected by default
 
-    // --- SHOW REGISTER FORLM ---
-
+    // --- SHOW REGISTER FORM ---
+    const handleRegister = () => {
+        setIsRegister(!isRegister)
+    }
 
     return (
         <div className="relative flex items-start justify-center min-h-screen w-full pt-20">
@@ -22,7 +24,7 @@ export default function AuthForm() {
             <form 
                 action="" 
                 className="z-10 flex flex-col items-center h-auto bg-transparent backdrop-blur-xs border-1 border-gray-300 p-6 rounded-xl gap-4 ">
-                <legend className="text-lg font-bold text-white">Connexion</legend>
+                <legend className="text-lg font-bold text-white">{isRegister ? "Inscription" : "Connexion" }</legend>
                 <fieldset className="flex flex-col gap-4">
 
                     {/* USERNAME INPUT */}
