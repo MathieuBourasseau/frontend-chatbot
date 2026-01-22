@@ -31,8 +31,9 @@ export default function AuthForm() {
             ...formData, // previous form with data
             [name]: value, // add key with value
         }));
+    };
 
-    }
+    // --- URL VARIABLE ---
 
     return (
         <div className="relative flex items-start justify-center min-h-screen w-full pt-20">
