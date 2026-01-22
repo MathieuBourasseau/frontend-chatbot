@@ -9,7 +9,7 @@ export default function AuthForm() {
 
     // --- DEFINE STATES --- 
     const [isRegister, setIsRegister] = useState(false); // User is not connected by default
-    const [formData, setIsFormData] = useState({
+    const [formData, setFormData] = useState({
         username: "",
         email: "",
         password:"",
@@ -27,10 +27,11 @@ export default function AuthForm() {
         const { name, value } = e.target;
 
         // Update the form with these new data
-        setIsFormData(formData => ({
+        setFormData(formData => ({
             ...formData, // previous form with data
             [name] : value, // add key with value
-        }))
+        }));
+
     }
 
     return (
