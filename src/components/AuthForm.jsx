@@ -12,7 +12,7 @@ export default function AuthForm() {
     const [formData, setFormData] = useState({
         username: "",
         email: "",
-        password:"",
+        password: "",
     }) // Form is empty by default
 
     // --- SHOW REGISTER FORM ---
@@ -29,7 +29,7 @@ export default function AuthForm() {
         // Update the form with these new data
         setFormData(formData => ({
             ...formData, // previous form with data
-            [name] : value, // add key with value
+            [name]: value, // add key with value
         }));
 
     }
@@ -65,7 +65,10 @@ export default function AuthForm() {
                             <input
                                 type="email"
                                 placeholder="monadresse@mail.com"
-                                className="placeholder-white outline-none"
+                                className="placeholder-white text-white outline-none"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange}
                             />
                             <FaAt className="text-white" />
                         </div>
@@ -77,7 +80,10 @@ export default function AuthForm() {
                         <input
                             type="password"
                             placeholder="Mot de passe"
-                            className="placeholder-white outline-none"
+                            className="placeholder-white text-white outline-none"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
                         />
                         <FaEye className="text-white" />
                     </div>
