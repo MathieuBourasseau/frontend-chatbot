@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { FaUserCircle } from "react-icons/fa";
+import { FaCheckCircle } from "react-icons/fa";
 import { FaAt } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import ParticlesBackground from "./ParticlesBackground";
@@ -86,7 +87,7 @@ export default function AuthForm({onLogin}) {
     }
 
     return (
-        <div className="relative flex items-start justify-center min-h-screen w-full pt-20">
+        <div className="relative flex flex-col gap-4 items-center justify-start min-h-screen w-full pt-20">
 
             <ParticlesBackground />
 
@@ -102,7 +103,7 @@ export default function AuthForm({onLogin}) {
                         <input
                             type="text"
                             placeholder="Nom d'utilisateur"
-                            className="placeholder-white text-white outline-none"
+                            className="bg-transparent placeholder-white text-white outline-none"
                             name="username"
                             value={formData.username}
                             onChange={handleChange}
@@ -116,7 +117,7 @@ export default function AuthForm({onLogin}) {
                             <input
                                 type="email"
                                 placeholder="monadresse@mail.com"
-                                className="placeholder-white text-white outline-none"
+                                className="bg-transparent placeholder-white text-white outline-none"
                                 name="email"
                                 value={formData.email}
                                 onChange={handleChange}
@@ -131,7 +132,7 @@ export default function AuthForm({onLogin}) {
                         <input
                             type="password"
                             placeholder="Mot de passe"
-                            className="placeholder-white text-white outline-none"
+                            className="bg-transparent placeholder-white text-white outline-none"
                             name="password"
                             value={formData.password}
                             onChange={handleChange}
@@ -177,7 +178,12 @@ export default function AuthForm({onLogin}) {
             
             {/* SUCCESS MESSAGE */}
             {successMessage && (
-                <span>{successMessage}</span>
+                <span 
+                    className="flex items-center border-1 border-gray-300 text-gray-300 gap-2 rounded-full text-sm p-2"
+                >
+                        {successMessage}
+                        <FaCheckCircle />
+                </span>
             )}
         </div>
     )

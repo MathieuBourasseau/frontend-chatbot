@@ -178,7 +178,7 @@ export default function Chat({ currentChatId, setCurrentChatId, setChatsList, ch
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "backOut" }}
           className="flex  justify-center items-center">
-          <h2 className="text-[35px] text-[#003C57]">Bonjour {user.username} comment puis-je vous aider aujourd'hui ?</h2>
+          <h2 className="text-[35px] text-[#003C57]">Bonjour {user.username}, comment puis-je vous aider aujourd'hui ?</h2>
         </motion.div>
       )
       }
