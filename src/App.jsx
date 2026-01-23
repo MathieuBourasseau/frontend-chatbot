@@ -19,7 +19,7 @@ function App() {
         const response = await fetch('http://localhost:3001/api/chats', {
           method: 'GET',
           headers: {
-            'Content-Type' : 'application/json'
+            'Content-Type': 'application/json'
           }
         });
 
@@ -31,17 +31,23 @@ function App() {
         console.error("Erreur lors de l'affichage de la liste des chats.", error);
       }
     }
-    
-      fetchChatsHistory();
+
+    fetchChatsHistory();
 
   }, []);
 
   return (
     <div className="flex">
 
-      <AuthForm />
-      {/* <Panel setCurrentChatId={setCurrentChatId} chatsList={chatsList} setChatsList={setChatsList} /> 
-      <Chat currentChatId={currentChatId} setCurrentChatId={setCurrentChatId} setChatsList={setChatsList} chatsList={chatsList} /> */}
+      {/* DISPLAY FORM IF USER IS NOT CONNECTED */}
+      {!user ? (
+        <AuthForm />
+      ) : (
+        <>
+          <Panel setCurrentChatId={setCurrentChatId} chatsList={chatsList} setChatsList={setChatsList} />
+          <Chat currentChatId={currentChatId} setCurrentChatId={setCurrentChatId} setChatsList={setChatsList} chatsList={chatsList} />
+        </>
+      )}
 
     </div>
   )
