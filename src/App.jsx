@@ -8,6 +8,7 @@ function App() {
   // --- DEFINE THE STATES ---
   const [currentChatId, setCurrentChatId] = useState(null);
   const [chatsList, setChatsList] = useState([]);
+  const [user, setUser] = useState(''); // No user by default
 
   // --- SHOW ALL THE CHATS HISTORY ---
   useEffect(() => {
@@ -37,9 +38,11 @@ function App() {
 
   return (
     <div className="flex">
+
+      <AuthForm />
       {/* <Panel setCurrentChatId={setCurrentChatId} chatsList={chatsList} setChatsList={setChatsList} /> 
       <Chat currentChatId={currentChatId} setCurrentChatId={setCurrentChatId} setChatsList={setChatsList} chatsList={chatsList} /> */}
-      <AuthForm />
+
     </div>
   )
 }
