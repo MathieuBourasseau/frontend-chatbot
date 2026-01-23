@@ -6,7 +6,7 @@ import { CiCirclePlus } from "react-icons/ci";
 import PanelButton from "./PanelButton";
 
 
-export default function Panel({ setCurrentChatId, chatsList, setChatsList, user }) {
+export default function Panel({ setCurrentChatId, chatsList, setChatsList, user, className }) {
 
     // Menu is closed by default
     const [isOpen, setIsOpen] = useState(false);
@@ -19,7 +19,7 @@ export default function Panel({ setCurrentChatId, chatsList, setChatsList, user 
     return (
         <aside
             className={
-                `h-screen flex flex-col gap-8 bg-[#003c57] p-4 transition-all duration-200 ease-in-out
+                `${className} h-screen flex flex-col gap-8 bg-[#003c57] p-4 transition-all duration-200 ease-in-out
             ${isOpen ? "w-[350px]" : "w-[50px]"}`}
         >
 

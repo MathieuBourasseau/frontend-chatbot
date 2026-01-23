@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { FaArrowUp } from "react-icons/fa";
 import { motion } from "framer-motion";
+import Header from "./Header";
 
 export default function Chat({ currentChatId, setCurrentChatId, setChatsList, chatsList, user }) {
 
@@ -140,76 +141,79 @@ export default function Chat({ currentChatId, setCurrentChatId, setChatsList, ch
   }
 
   // --- SHOW THE TITLE CHAT ---
-  
+
   const currentChatTitle = chatsList.find(chat => chat.id === currentChatId);
   const currentTitle = currentChatTitle ? currentChatTitle.name : "Nouveau chat";
 
   return (
-    <main className={`flex flex-col flex-1 gap-8 h-screen items-center ${!currentChatId ? "justify-center" : ""} p-4`}>
+    <div>
+      <Header />
+      <main className={`flex flex-col flex-1 gap-8 h-screen items-center ${!currentChatId ? "justify-center" : ""} p-4`}>
 
-      {/* CHAT TITLE */}
-      {currentChatId && (
-        <header className="p-4 border-b">
-          <h1 className="font-bold shrink-0">{currentTitle}</h1>
-        </header>
-      )}
+        {/* CHAT TITLE */}
+        {currentChatId && (
+          <header className="p-4 border-b">
+            <h1 className="font-bold shrink-0">{currentTitle}</h1>
+          </header>
+        )}
 
-      {/* CHAT MESSAGES OR WELCOME MESSAGE */}
-      {currentChatId ? (
-        <div className="flex flex-1 flex-col max-w-[850px] w-full overflow-y-auto mx-auto gap-6">
+        {/* CHAT MESSAGES OR WELCOME MESSAGE */}
+        {currentChatId ? (
+          <div className="flex flex-1 flex-col max-w-[850px] w-full overflow-y-auto mx-auto gap-6">
 
-          {messages.map((msg, i) => (
-            <div
-              key={i}
-              className={`p-4
+            {messages.map((msg, i) => (
+              <div
+                key={i}
+                className={`p-4
               ${msg.sender === "user"
-                  ? "self-end bg-[#003c57] shadow-sm text-white rounded-lg rounded-tr-none max-w-[70%]"
-                  : "self-start w-full"
-                }`}
+                    ? "self-end bg-[#003c57] shadow-sm text-white rounded-lg rounded-tr-none max-w-[70%]"
+                    : "self-start w-full"
+                  }`}
+              >
+                {msg.text}
+              </div>
+            ))}
+            <div ref={messagesEndRef}></div>
+          </div>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "backOut" }}
+            className="flex  justify-center items-center">
+            <h2 className="text-[35px] text-[#003C57]">Bonjour {user.username}, comment puis-je vous aider aujourd'hui ?</h2>
+          </motion.div>
+        )
+        }
+
+        {/* CHAT INPUT */}
+        <form
+          action=""
+          onSubmit={handleSubmit}
+          className="max-w-[850px] h-[150px] w-full border-2 border-gray-200 p-4 rounded-lg shadow-sm"
+        >
+          <div className="flex h-full">
+
+            {/* USER MESSAGES */}
+            <textarea
+              type="text"
+              placeholder="Ecrivez votre question."
+              className="h-full flex-1 outline-none resize-none pt-0"
+              value={message}
+              onChange={handleMessage}
+              onKeyDown={handleKeyDown}
+            />
+
+            {/* BUTTON TO SEND MESSAGE */}
+            <button
+              className="self-end cursor-pointer bg-[#f8532a] p-2"
+              type="submit"
             >
-              {msg.text}
-            </div>
-          ))}
-          <div ref={messagesEndRef}></div> 
-        </div>
-      ) : (
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "backOut" }}
-          className="flex  justify-center items-center">
-          <h2 className="text-[35px] text-[#003C57]">Bonjour {user.username}, comment puis-je vous aider aujourd'hui ?</h2>
-        </motion.div>
-      )
-      }
-
-      {/* CHAT INPUT */}
-      <form
-        action=""
-        onSubmit={handleSubmit}
-        className="max-w-[850px] h-[150px] w-full border-2 border-gray-200 p-4 rounded-lg shadow-sm"
-      >
-        <div className="flex h-full">
-
-          {/* USER MESSAGES */}
-          <textarea
-            type="text"
-            placeholder="Ecrivez votre question."
-            className="h-full flex-1 outline-none resize-none pt-0"
-            value={message}
-            onChange={handleMessage}
-            onKeyDown={handleKeyDown}
-          />
-
-          {/* BUTTON TO SEND MESSAGE */}
-          <button
-            className="self-end cursor-pointer bg-[#f8532a] p-2"
-            type="submit"
-          >
-            <FaArrowUp className="text-white" />
-          </button>
-        </div>
-      </form>
-    </main >
+              <FaArrowUp className="text-white" />
+            </button>
+          </div>
+        </form>
+      </main >
+    </div>
   )
 }

@@ -44,7 +44,7 @@ function App() {
         <AuthForm onLogin={setUser}  />
       ) : (
         <>
-          <Panel setCurrentChatId={setCurrentChatId} chatsList={chatsList} setChatsList={setChatsList} user={user} />
+          <Panel className="hidden md:block" setCurrentChatId={setCurrentChatId} chatsList={chatsList} setChatsList={setChatsList} user={user} />
           <Chat currentChatId={currentChatId} setCurrentChatId={setCurrentChatId} setChatsList={setChatsList} chatsList={chatsList} user={user} />
         </>
       )}
