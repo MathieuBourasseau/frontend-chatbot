@@ -8,14 +8,6 @@ import PanelButton from "./PanelButton";
 
 export default function Panel({ setCurrentChatId, chatsList, setChatsList, user, className }) {
 
-    // Menu is closed by default
-    const [isOpen, setIsOpen] = useState(false);
-
-    // Open and close the panel
-    const togglePanel = () => {
-        setIsOpen(!isOpen)
-    };
-
     return (
         <aside
             className={

@@ -9,6 +9,12 @@ function App() {
   const [currentChatId, setCurrentChatId] = useState(null);
   const [chatsList, setChatsList] = useState([]);
   const [user, setUser] = useState(null); // No user by default
+  const [isOpen, setIsOpen] = useState(false);  // Menu is closed by default
+
+  // --- OPEN/CLOSE MENU --- 
+  const togglePanel = () => {
+    setIsOpen(!isOpen)
+  };
 
   // --- SHOW ALL THE CHATS HISTORY ---
   useEffect(() => {
@@ -41,7 +47,7 @@ function App() {
 
       {/* DISPLAY FORM IF USER IS NOT CONNECTED */}
       {!user ? (
-        <AuthForm onLogin={setUser}  />
+        <AuthForm onLogin={setUser} />
       ) : (
         <>
           <Panel className="hidden lg:block" setCurrentChatId={setCurrentChatId} chatsList={chatsList} setChatsList={setChatsList} user={user} />
