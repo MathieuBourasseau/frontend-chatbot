@@ -147,7 +147,7 @@ export default function Chat({ currentChatId, setCurrentChatId, setChatsList, ch
 
     return (
 
-        <main className={`flex flex-col gap-8 h-full items-center ${!currentChatId ? "justify-center" : ""} p-4`}>
+        <main className={`flex flex-col gap-8 h-full w-full items-center ${!currentChatId ? "justify-center" : ""} p-4`}>
 
             {/* CHAT TITLE */}
             {currentChatId && (
@@ -185,7 +185,7 @@ export default function Chat({ currentChatId, setCurrentChatId, setChatsList, ch
                         <img 
                             src={mbLogo} 
                             alt="Logo mb com" 
-                            className="max-w-[120px]"
+                            className="max-w-[120px] md:hidden"
                         />
                     </motion.div>
                 )}
