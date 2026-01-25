@@ -149,13 +149,6 @@ export default function Chat({ currentChatId, setCurrentChatId, setChatsList, ch
 
         <main className={`flex flex-col gap-8 h-full relative w-full items-center ${!currentChatId ? "justify-center" : ""} p-4`}>
 
-            {/* CHAT TITLE */}
-            {currentChatId && (
-                <header className="p-4 border-b">
-                    <h1 className="font-bold shrink-0">{currentTitle}</h1>
-                </header>
-            )}
-
             {/* CHAT MESSAGES OR WELCOME MESSAGE */}
             <div className="flex-1 overflow-y-auto">
 
