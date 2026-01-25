@@ -164,7 +164,7 @@ export default function Chat({ currentChatId, setCurrentChatId, setChatsList, ch
                         {messages.map((msg, i) => (
                             <div
                                 key={i}
-                                className={`p-4
+                                className={`p-4 text-sm md:text-base
                   ${msg.sender === "user"
                                         ? "self-end bg-[#003c57] shadow-sm text-white rounded-lg rounded-tr-none max-w-[70%]"
                                         : "self-start w-full"
@@ -182,9 +182,9 @@ export default function Chat({ currentChatId, setCurrentChatId, setChatsList, ch
                         transition={{ duration: 1, ease: "backOut" }}
                         className="flex h-full justify-center items-center">
                         <h2 className="hidden md:block text-[20px] md:text-[35px] text-[#003C57]">Bonjour {user.username}, comment puis-je vous aider aujourd'hui ?</h2>
-                        <img 
-                            src={mbLogo} 
-                            alt="Logo mb com" 
+                        <img
+                            src={mbLogo}
+                            alt="Logo mb com"
                             className="max-w-[120px] md:hidden"
                         />
                     </motion.div>
