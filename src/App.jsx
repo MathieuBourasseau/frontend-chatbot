@@ -38,18 +38,19 @@ function App() {
   }, []);
 
   return (
-    <div className="flex flex-col h-screen overflow-hidden">
-
+    <div className={`relative flex flex-row h-screen overflow-hidden ${user ? "bg-[#003c57]" : ""}`}>
       {/* DISPLAY FORM IF USER IS NOT CONNECTED */}
       {!user ? (
         <AuthForm onLogin={setUser} />
       ) : (
         <>
-          <Header isOpen={isOpen} setIsOpen={setIsOpen} />
-          <main className="flex flex-1 overflow-hidden relative">
-            <Panel setCurrentChatId={setCurrentChatId} chatsList={chatsList} setChatsList={setChatsList} user={user} isOpen={isOpen} setIsOpen={setIsOpen} />
-            <Chat currentChatId={currentChatId} setCurrentChatId={setCurrentChatId} setChatsList={setChatsList} chatsList={chatsList} user={user} />
-          </main>
+          <Panel setCurrentChatId={setCurrentChatId} chatsList={chatsList} setChatsList={setChatsList} user={user} isOpen={isOpen} setIsOpen={setIsOpen} />
+          <div className={`transition-transform duration-300 bg-white flex flex-col flex-1 h-full z-10 ${isOpen ? "translate-x-[350px]" : "translate-x-0"}`}>
+            <Header isOpen={isOpen} setIsOpen={setIsOpen} />
+            <main className="flex flex-1 overflow-hidden relative">
+              <Chat currentChatId={currentChatId} setCurrentChatId={setCurrentChatId} setChatsList={setChatsList} chatsList={chatsList} user={user} />
+            </main>
+          </div>
         </>
       )}
 
