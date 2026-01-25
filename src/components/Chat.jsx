@@ -147,7 +147,7 @@ export default function Chat({ currentChatId, setCurrentChatId, setChatsList, ch
 
     return (
 
-        <main className={`flex flex-col gap-8 h-full w-full items-center ${!currentChatId ? "justify-center" : ""} p-4`}>
+        <main className={`flex flex-col gap-8 h-full relative w-full items-center ${!currentChatId ? "justify-center" : ""} p-4`}>
 
             {/* CHAT TITLE */}
             {currentChatId && (
@@ -195,7 +195,7 @@ export default function Chat({ currentChatId, setCurrentChatId, setChatsList, ch
             <form
                 action=""
                 onSubmit={handleSubmit}
-                className="max-w-[850px] h-[150px] w-full border-2 border-gray-200 p-4 rounded-lg shadow-sm"
+                className="max-w-[850px]  h-[80px] md:h-[150px] w-full border-2 border-gray-200 p-4 rounded-3xl shadow-sm"
             >
                 <div className="flex h-full">
 
