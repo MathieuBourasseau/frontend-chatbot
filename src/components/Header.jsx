@@ -1,7 +1,14 @@
+import { h1 } from "framer-motion/client";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { ImCross } from "react-icons/im";
 
-export default function Header({isOpen, setIsOpen, }) {
+export default function Header({ isOpen, setIsOpen, currentChatId, chatsList  }) {
+
+    // Find the current chat 
+    const currentChat = chatsList ? chatsList.find(c => c.id === currentChatId) : null;
+
+    // Find the title
+    const currentTitle = currentChat ? currentChat.name : "Projet LLM";
 
     return (
         <header className="p-4">
@@ -15,7 +22,7 @@ export default function Header({isOpen, setIsOpen, }) {
                 >  
                     {isOpen ? <ImCross className="text-[#003C57]" /> : <GiHamburgerMenu className="text-[#003C57]" />  }
                 </button>
-                <h1 className="font-bold">Projet LLM</h1>
+                <h1 className="font-bold">{currentTitle}</h1>
                 <span>user data</span>
             </nav>
         </header>
