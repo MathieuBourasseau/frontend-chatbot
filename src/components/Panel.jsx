@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import { ImCross } from "react-icons/im";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaSearch } from "react-icons/fa";
@@ -6,16 +5,15 @@ import { CiCirclePlus } from "react-icons/ci";
 import PanelButton from "./PanelButton";
 
 
-export default function Panel({ setCurrentChatId, chatsList, setChatsList, user, isOpen, setIsOpen, className }) {
+export default function Panel({ setCurrentChatId, chatsList, setChatsList, user, isOpen, setIsOpen}) {
 
     return (
         <aside
             className={`
-                ${className} 
                 h-full flex flex-col gap-8 bg-[#003c57]
                 w-[350px] shrink-0 p-4 transition-all duration-300 ease-in-out
                 absolute top-0 left-0 z-0
-                lg:relative lg:z-auto lg:block
+                lg:relative lg:z-auto lg:flex lg:gap-6
                 ${isOpen ? "lg:w-[350px]" : "lg:w-[50px]"}
             `}
         >
