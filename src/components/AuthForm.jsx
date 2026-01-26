@@ -39,6 +39,16 @@ export default function AuthForm({onLogin}) {
         }));
     };
 
+    // --- HANDLE FILE TO LOAD IMAGE ---
+    const handleFile = (e) => {
+
+        // Get the file selected by user
+        const file = e.target.files[0];
+
+        // Update the state 
+        setSelectedFile(file);
+    }
+
     // --- HANDLE SUBMIT IN FORM --- 
     const handleSubmit = async (e) => {
 
@@ -127,7 +137,6 @@ export default function AuthForm({onLogin}) {
                         </div>
                     )}
 
-
                     {/* PASSWORD INPUT */}
                     <div className="flex items-center p-4 justify-between border-1 border-gray-300 rounded-full text-sm bg-transparent">
                         <input
@@ -148,6 +157,7 @@ export default function AuthForm({onLogin}) {
                             placeholder="Choisir une image de profil"
                             className="bg-transparent placeholder-white text-white outline-none"
                             name="avatar"
+                            onChange={handleFile}
                         />
                         <FaEye className="text-white" />
                     </div>
