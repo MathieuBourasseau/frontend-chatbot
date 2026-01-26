@@ -173,12 +173,12 @@ export default function Chat({ currentChatId, setCurrentChatId, setChatsList, ch
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, ease: "backOut" }}
-                        className="flex h-full justify-center items-center">
-                        <h2 className="hidden md:block text-[20px] md:text-[35px] text-[#003C57]">Bonjour {user.username}, comment puis-je vous aider aujourd'hui ?</h2>
+                        className="flex flex-col h-full justify-center items-center">
+                        <h2 className="text-center text-[20px] md:text-[28px] text-[#003C57]">Bonjour {user.username}, comment puis-je vous aider aujourd'hui ?</h2>
                         <img
                             src={mbLogo}
                             alt="Logo mb com"
-                            className="max-w-[120px] md:hidden"
+                            className="max-w-[120px] lg:hidden"
                         />
                     </motion.div>
                 )}
