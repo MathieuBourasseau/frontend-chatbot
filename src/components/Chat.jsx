@@ -147,10 +147,10 @@ export default function Chat({ currentChatId, setCurrentChatId, setChatsList, ch
 
     return (
 
-        <main className={`flex flex-col gap-8 h-full relative w-full items-center ${!currentChatId ? "justify-center" : ""} p-4`}>
+        <main className={`flex flex-col gap-8 h-full relative w-full items-center ${!currentChatId ? "lg:justify-center" : ""} p-4`}>
 
             {/* CHAT MESSAGES OR WELCOME MESSAGE */}
-            <div className="flex-1 overflow-y-auto">
+            <div className={`${currentChatId ? "flex-1 overflow-y-auto" : "flex-1 lg:flex-none"}`}>
 
                 {currentChatId ? (
                     <div className="flex flex-1 flex-col max-w-[850px] w-full overflow-y-auto mx-auto gap-6">
