@@ -8,10 +8,8 @@ export default function Header({ isOpen, setIsOpen, currentChatId, chatsList, us
     const [isDisconnected, setIsDisconnected] = useState(false);
 
 
-    // Find the current chat 
+    // --- FIND CURRENTCHAT AND ITS TITLE
     const currentChat = chatsList ? chatsList.find(c => c.id === currentChatId) : null;
-
-    // Find the title
     const currentTitle = currentChat ? currentChat.name : "Projet LLM";
 
     return (
@@ -60,12 +58,13 @@ export default function Header({ isOpen, setIsOpen, currentChatId, chatsList, us
                 {/* DISCONNECTION DESKTOP */}
                 <div
                     className={
-                        `bg-[#003C57] p-2 absolute lg:right-0 lg:top-full rounded-lg text-white transition-all duration-300
-                        ${isDisconnected ? "translate-y-2 opacity-100 pointer-events-auto" : "translate-y-0 opacity-0 pointers-events-none"}
+                        `z-50 bg-[#003C57] p-2 absolute lg:right-0 lg:top-full rounded-lg text-white transition-all duration-300
+                        ${isDisconnected ? "translate-y-2 opacity-100 pointer-events-auto" : "translate-y-0 opacity-0 pointer-events-none"}
                         `}
                 >
                     <button
-                        className="flex items-center gap-2"
+                        type="button"
+                        className="flex items-center gap-2 cursor-pointer"
                     >
                         Déconnexion
                         <span><CiLogout /></span>
