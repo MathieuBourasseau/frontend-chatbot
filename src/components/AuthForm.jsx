@@ -28,6 +28,11 @@ export default function AuthForm({setUser}) {
         setIsRegister(!isRegister)
     };
 
+    // --- HANDLE CHECKED --- 
+    const handleChecked = (e) => {
+        setIsChecked(e.checked);
+    }  
+
     // --- HANDLE CHANGE IN FORM INPUT --- 
     const handleChange = (e) => {
 
@@ -199,7 +204,12 @@ export default function AuthForm({setUser}) {
                     {!isRegister && (
                         <div className="flex items-center gap-4 text-[12px] text-white">
                             <label htmlFor="" className="flex items-center gap-1">
-                                <input type="checkbox" className="cursor-pointer" />
+                                <input 
+                                    type="checkbox" 
+                                    checked={isChecked} 
+                                    className="cursor-pointer" 
+                                    onChange={handleChecked}
+                                />
                                 <span>Se souvenir de moi</span>
                             </label>
                             <button
