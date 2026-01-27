@@ -18,7 +18,9 @@ export default function AuthForm({setUser}) {
         password: "",
     }) // Form is empty by default
     const [successMessage, setSuccessMessage] = useState(''); // Success message is empty by default
+    const [isChecked, setIsChecked] = useState(false); // Remember me is not checked by default
     
+    // --- NAVIGATION ---
     const navigate = useNavigate()
 
     // --- SHOW REGISTER FORM ---
