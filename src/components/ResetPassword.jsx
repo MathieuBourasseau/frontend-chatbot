@@ -9,23 +9,24 @@ export default function ResetPassword() {
     const { token } = useParams(); // get the :token in the request
     const [password, setPassword] = useState(''); // By default the password is empty
     const [message, setMessage] = useState(''); // By default no message
-
+    const [showPassword, setShowPassword] = useState(false); // Password hidden by default
+    
 
     return (
         <form>
             <div>
                 <input
-                    type="password"
+                    type={ showPassword ? "text" : "password"}
                     placeholder="Nouveau mot de passe"
                 />
                 <span
                     className="cursor-pointer text-white"
-                    onClick={displayPassword}
+                    onClick={() => setShowPassword(!showPassword)}
                 >
                     {showPassword ? (
                         <IoMdEyeOff />
                     ) : (
-                        <FaEye onClick={displayPassword} />
+                        <FaEye />
                     )}
                 </span>
             </div>
