@@ -20,6 +20,7 @@ export default function AuthForm({setUser}) {
     }) // Form is empty by default
     const [successMessage, setSuccessMessage] = useState(''); // Success message is empty by default
     const [isChecked, setIsChecked] = useState(false); // Remember me is not checked by default
+    const [showPassword, setShowPassword] = useState(false);
     
     // --- NAVIGATION ---
     const navigate = useNavigate()
@@ -32,7 +33,12 @@ export default function AuthForm({setUser}) {
     // --- HANDLE CHECKED --- 
     const handleChecked = (e) => {
         setIsChecked(e.target.checked);
-    }  
+    }
+    
+    // --- SHOW PASSWORD --- 
+    const displayPassword = () => {
+        setShowPassword(!showPassword)
+    }
 
     // --- HANDLE CHANGE IN FORM INPUT --- 
     const handleChange = (e) => {
@@ -183,14 +189,17 @@ export default function AuthForm({setUser}) {
                     {/* PASSWORD INPUT */}
                     <div className="flex items-center p-4 justify-between border-1 border-gray-300 rounded-full text-sm bg-transparent  md:text-base lg:text-lg">
                         <input
-                            type="password"
+                            type={showPassword ? "text" : "password"}
                             placeholder="Mot de passe"
                             className="bg-transparent placeholder-white text-white outline-none w-full"
                             name="password"
                             value={formData.password}
                             onChange={handleChange}
                         />
-                        <FaEye className="text-white" />
+                        <FaEye
+                            className="cursor-pointer text-white" 
+                            onClick={displayPassword}
+                        />
                     </div>
 
                     {/* AVATAR INPUT */}
