@@ -6,9 +6,9 @@ import { FaEye } from "react-icons/fa";
 import ParticlesBackground from "./ParticlesBackground";
 import { useNavigate } from "react-router-dom";
 import { AiOutlinePicture } from "react-icons/ai";
+import { IoMdEyeOff } from "react-icons/io";
 
-
-export default function AuthForm({setUser}) {
+export default function AuthForm({ setUser }) {
 
     // --- DEFINE STATES --- 
     const [isRegister, setIsRegister] = useState(false); // User is not connected by default
@@ -21,7 +21,7 @@ export default function AuthForm({setUser}) {
     const [successMessage, setSuccessMessage] = useState(''); // Success message is empty by default
     const [isChecked, setIsChecked] = useState(false); // Remember me is not checked by default
     const [showPassword, setShowPassword] = useState(false);
-    
+
     // --- NAVIGATION ---
     const navigate = useNavigate()
 
@@ -34,7 +34,7 @@ export default function AuthForm({setUser}) {
     const handleChecked = (e) => {
         setIsChecked(e.target.checked);
     }
-    
+
     // --- SHOW PASSWORD --- 
     const displayPassword = () => {
         setShowPassword(!showPassword)
@@ -76,7 +76,7 @@ export default function AuthForm({setUser}) {
         let headersContent;
 
         // If the user wants to sign up 
-        if(isRegister) {
+        if (isRegister) {
 
             const registerData = new FormData(); // Create an instance of FormData to send file to backend
 
@@ -86,7 +86,7 @@ export default function AuthForm({setUser}) {
             registerData.append('password', formData.password);
 
             // If user has selected a file as avatar we send it to backend 
-            if(selectedFile) {
+            if (selectedFile) {
                 registerData.append('avatar', selectedFile);
             };
 
@@ -100,16 +100,16 @@ export default function AuthForm({setUser}) {
             // isChecked state is added a this moment
             const loginData = {
                 ...formData,
-                rememberMe : isChecked,
+                rememberMe: isChecked,
             };
 
             bodyContent = JSON.stringify(loginData); // Get all the value put in formData
-            headersContent = { "Content-Type" : "application/json" };
+            headersContent = { "Content-Type": "application/json" };
 
         }
-        
+
         // Fetch data to the backend
-        const response = await fetch (url, {
+        const response = await fetch(url, {
             method: "POST",
             headers: headersContent,
             body: bodyContent,
@@ -118,14 +118,14 @@ export default function AuthForm({setUser}) {
         const data = await response.json();
 
         // Verify if the fetch is working
-        if(!response.ok) {
+        if (!response.ok) {
             console.log("Erreur :", data.message);
             return;
         }
-        
+
         setSuccessMessage(data.message);
 
-        if(isRegister) {
+        if (isRegister) {
 
             // Reset success message and redirect toward login form
             setTimeout(() => {
@@ -135,7 +135,7 @@ export default function AuthForm({setUser}) {
 
         } else {
             // Save token to localStorage, reset the success message and redirect toward user Chat
-            
+
             setTimeout(() => {
                 localStorage.setItem("token", data.token);
                 setUser(data.user);
@@ -196,44 +196,53 @@ export default function AuthForm({setUser}) {
                             value={formData.password}
                             onChange={handleChange}
                         />
-                        <FaEye
-                            className="cursor-pointer text-white" 
-                            onClick={displayPassword}
-                        />
+
+                        {showPassword ? (
+                            <IoMdEyeOff 
+                                className="cursor-pointer text-white" 
+                                onClick={displayPassword}
+                            />
+                        ) : (
+
+                            <FaEye
+                                className="cursor-pointer text-white"
+                                onClick={displayPassword}
+                            />
+                        )}
                     </div>
 
                     {/* AVATAR INPUT */}
                     {isRegister && (
                         <div className="flex items-center w-full">
-                        <input
-                            type="file"
-                            className="hidden"
-                            name="avatar"
-                            onChange={handleFile}
-                            id="avatar-upload"
-                        />
-                        <label 
-                            htmlFor="avatar-upload"
-                            className="flex items-center w-full p-4 justify-between border-1 border-gray-300 rounded-full text-sm bg-transparent md:text-base lg:text-lg"
-                        >
-                            <span className="text-white">
-                                {selectedFile ? selectedFile.name : "Ajouter une photo de profil"}
-                            </span>
+                            <input
+                                type="file"
+                                className="hidden"
+                                name="avatar"
+                                onChange={handleFile}
+                                id="avatar-upload"
+                            />
+                            <label
+                                htmlFor="avatar-upload"
+                                className="flex items-center w-full p-4 justify-between border-1 border-gray-300 rounded-full text-sm bg-transparent md:text-base lg:text-lg"
+                            >
+                                <span className="text-white">
+                                    {selectedFile ? selectedFile.name : "Ajouter une photo de profil"}
+                                </span>
 
-                        <AiOutlinePicture className="text-white" />
-                        </label>
-                    </div>
+                                <AiOutlinePicture className="text-white" />
+                            </label>
+                        </div>
                     )}
-                    
+
 
                     {/* SAVE USER INFORMATION OR FORGOT PASSWORD */}
                     {!isRegister && (
                         <div className="flex items-center  gap-4 text-[12px] text-white md:text-base lg:text-lg">
                             <label htmlFor="" className="flex items-center gap-2">
-                                <input 
-                                    type="checkbox" 
-                                    checked={isChecked} 
-                                    className="cursor-pointer" 
+                                <input
+                                    type="checkbox"
+                                    checked={isChecked}
+                                    className="cursor-pointer"
                                     onChange={handleChecked}
                                     value={isChecked}
                                 />
@@ -268,14 +277,14 @@ export default function AuthForm({setUser}) {
 
                 </fieldset>
             </form>
-            
+
             {/* SUCCESS MESSAGE */}
             {successMessage && (
-                <span 
+                <span
                     className="flex items-center border-1 border-gray-300 text-gray-300 gap-2 rounded-full text-sm p-2"
                 >
-                        {successMessage}
-                        <FaCheckCircle />
+                    {successMessage}
+                    <FaCheckCircle />
                 </span>
             )}
         </div>
