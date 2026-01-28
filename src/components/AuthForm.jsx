@@ -173,7 +173,7 @@ export default function AuthForm({ setUser }) {
                         <input
                             type="text"
                             placeholder="Nom d'utilisateur"
-                            className="bg-transparent placeholder-white text-white outline-none w-full"
+                            className="bg-transparent placeholder-white text-white outline-none w-full autofill:bg-transparent transition-colors duration-[5000000s] ease-in-out"
                             name="username"
                             value={formData.username}
                             onChange={handleChange}
