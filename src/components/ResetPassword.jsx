@@ -20,7 +20,7 @@ export default function ResetPassword() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`http://localhost:3001/api/reset-password/${token}`, {
+            const response = await fetch(`https://backend-chatbot-v3xr.onrender.com/api/reset-password/${token}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ password })
@@ -58,10 +58,10 @@ export default function ResetPassword() {
 
                 <fieldset className="flex flex-col gap-4 md:justify-center md:max-w-[350px] md:w-full">
 
-                    <div className="flex items-center p-4 justify-between border-1 border-gray-300 rounded-full text-sm bg-transparent md:text-base lg:text-lg">
+                    <div className="flex items-center gap-4 p-4 justify-between border-1 border-gray-300 rounded-full text-sm bg-transparent md:gap-2 md:text-base lg:text-lg">
                         <input
                             type={showPassword ? "text" : "password"}
-                            placeholder="Entrez votre nouveau mot de passe"
+                            placeholder="Nouveau mot de passe"
                             className="bg-transparent placeholder-white text-white outline-none w-full"
                             value={password}
                             onChange={handleChange}
@@ -77,7 +77,7 @@ export default function ResetPassword() {
 
                     <button
                         type="submit"
-                        className="bg-gray-300 text-[#003c57] p-2 border-1 border-transparent font-bold rounded-full cursor-pointer hover:bg-transparent hover:border-gray-300 hover:text-white md:text-base lg:text-lg transition-all"
+                        className="bg-gray-300 text-[#003c57] text-sm p-2 border-1 border-transparent font-bold rounded-full cursor-pointer hover:bg-transparent hover:border-gray-300 hover:text-white md:text-base lg:text-lg transition-all"
                     >
                         Changer le mot de passe
                     </button>
