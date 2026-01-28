@@ -3,10 +3,10 @@ import { FaUserCircle } from "react-icons/fa";
 import { FaCheckCircle } from "react-icons/fa";
 import { FaAt } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
+import { IoMdEyeOff } from "react-icons/io";
 import ParticlesBackground from "./ParticlesBackground";
 import { useNavigate } from "react-router-dom";
 import { AiOutlinePicture } from "react-icons/ai";
-import { IoMdEyeOff } from "react-icons/io";
 
 export default function AuthForm({ setUser }) {
 
