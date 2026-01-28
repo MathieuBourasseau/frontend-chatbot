@@ -148,7 +148,7 @@ export default function AuthForm({setUser}) {
             {/* SHOW REGISTER OR LOGIN FORM */}
             <form
                 onSubmit={handleSubmit}
-                className="z-10 flex flex-col items-center h-auto bg-transparent backdrop-blur-xs border-1 border-gray-300 p-6 rounded-xl gap-4 md:max-h-[400px] md:h-full md:max-w-[450px] md:w-full ">
+                className="z-10 flex flex-col items-center h-fit bg-transparent backdrop-blur-xs border-1 border-gray-300 p-6 rounded-xl gap-4 md:max-w-[450px] md:w-full ">
                 <legend className="text-lg font-bold text-white md:text-2xl lg:text-3xl">{isRegister ? "Inscription" : "Connexion"}</legend>
                 <fieldset className="flex flex-col gap-4 md:justify-center md:max-w-[350px] md:w-full">
 
