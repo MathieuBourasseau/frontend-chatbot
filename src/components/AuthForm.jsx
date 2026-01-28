@@ -224,6 +224,15 @@ export default function AuthForm({ setUser }) {
                         <legend className="text-lg font-bold text-white md:text-2xl lg:text-3xl">{isRegister ? "Inscription" : "Connexion"}</legend>
                         <fieldset className="flex flex-col gap-4 md:justify-center md:max-w-[350px] md:w-full">
 
+                            {/* PREVIEW URL */}
+                            {previewUrl && (
+                                <img
+                                    src={previewUrl}
+                                    alt=""
+                                    className="w-20 h-20 rounded-full object-cover border-1 self-center"
+                                />
+                            )}
+
                             {/* USERNAME INPUT */}
                             <div className="flex items-center p-4 justify-between border-1 border-gray-300 rounded-full text-sm bg-transparent md:text-base lg:text-lg">
                                 <input
@@ -276,15 +285,6 @@ export default function AuthForm({ setUser }) {
                                     />
                                 )}
                             </div>
-
-                            {/* PREVIEW URL */}
-                            {previewUrl && (
-                                <img
-                                    src={previewUrl}
-                                    alt=""
-                                    className="w-20 h-20 rounded-full object-cover"
-                                />
-                            )}
 
                             {/* AVATAR INPUT */}
                             {isRegister && (
