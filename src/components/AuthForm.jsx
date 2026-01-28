@@ -20,7 +20,8 @@ export default function AuthForm({ setUser }) {
     }) // Form is empty by default
     const [successMessage, setSuccessMessage] = useState(''); // Success message is empty by default
     const [isChecked, setIsChecked] = useState(false); // Remember me is not checked by default
-    const [showPassword, setShowPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState(false); // Password is not shown by default 
+    const [previewUrl, setPreviewUrl] = useState(null);
 
     // --- NAVIGATION ---
     const navigate = useNavigate()
@@ -59,9 +60,18 @@ export default function AuthForm({ setUser }) {
         // Get the file selected by user
         const file = e.target.files[0];
 
-        // Update the state 
-        setSelectedFile(file);
-    }
+        // Create preview url and update states
+        if (file) {
+            // Update the state 
+            setSelectedFile(file);
+
+            // Create preview url
+            const imageUrl = URL.createObjectURL(file);
+
+            // update preview state
+            setPreviewUrl(imageUrl)
+        }
+    };
 
     // --- HANDLE SUBMIT IN FORM --- 
     const handleSubmit = async (e) => {
@@ -198,8 +208,8 @@ export default function AuthForm({ setUser }) {
                         />
 
                         {showPassword ? (
-                            <IoMdEyeOff 
-                                className="cursor-pointer text-white" 
+                            <IoMdEyeOff
+                                className="cursor-pointer text-white"
                                 onClick={displayPassword}
                             />
                         ) : (
@@ -223,7 +233,7 @@ export default function AuthForm({ setUser }) {
                             />
                             <label
                                 htmlFor="avatar-upload"
-                                className="flex items-center w-full p-4 justify-between border-1 border-gray-300 rounded-full text-sm bg-transparent md:text-base lg:text-lg"
+                                className="cursor-pointer flex items-center w-full p-4 justify-between border-1 border-gray-300 rounded-full text-sm bg-transparent md:text-base lg:text-lg"
                             >
                                 <span className="text-white">
                                     {selectedFile ? selectedFile.name : "Ajouter une photo de profil"}
