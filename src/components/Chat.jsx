@@ -130,9 +130,6 @@ export default function Chat({ currentChatId, setCurrentChatId, setChatsList, ch
             console.error("Réponse de l'IA incomplète :", data);
         }
 
-        // Update the list of messages 
-        setMessages((prev) => [...prev, mistralAnswer]);
-
         // Identify the chat of the current conversation
         if (data.chat) {
 
