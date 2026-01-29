@@ -26,7 +26,7 @@ function App() {
       // Stop here if token does not exist
       if (!token) return;
 
-      
+
 
       // Fetch to verify the token
       try {
@@ -60,11 +60,15 @@ function App() {
 
     const fetchChatsHistory = async () => {
 
+      const token = localStorage.getItem('token');
+      if (!token) return;
+
       try {
         const response = await fetch(`${API_URL}/chats`, {
           method: 'GET',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
           }
         });
 
@@ -77,9 +81,12 @@ function App() {
       }
     }
 
-    fetchChatsHistory();
+    if (user) {
+      fetchChatsHistory();
+    }
 
-  }, []);
+
+  }, [user]);
 
   return (
 
