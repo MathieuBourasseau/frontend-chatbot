@@ -6,24 +6,16 @@ import ReactMarkdown from 'react-markdown'
 
 export default function Chat({ currentChatId, setCurrentChatId, setChatsList, chatsList, user }) {
 
-    // --- API URL --- 
     const API_URL = import.meta.env.VITE_API_URL
 
-    // --- DEFINE THE STATES --- 
     const [messages, setMessages] = useState([]);
-    const [message, setMessage] = useState(''); // Message is empty by default
-    const [isLoading, setIsLoading] = useState(false); // Loading is false by default
+    const [message, setMessage] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
-    // --- DEFINE THE REF ---
     const messagesEndRef = useRef(null)
 
-    // --- SHOW THE CHAT HISTORY WHEN ID CHANGES ---
-
     useEffect(() => {
-
-        // Function to execute when the chat ID is changing
         const fetchChatHistory = async () => {
-
             try {
                 const response = await fetch(`${API_URL}/chats/${currentChatId}/messages`, {
                     method: 'GET',
@@ -31,91 +23,65 @@ export default function Chat({ currentChatId, setCurrentChatId, setChatsList, ch
                         'Content-Type': "application/json",
                     }
                 });
-
                 const data = await response.json();
-
-                // Formatting the data to match with front keys
                 const formattedMessages = data.map(msg => ({
                     sender: msg.role === "assistant" ? "ai" : "user",
                     text: msg.content
                 }));
-
-                // Show the messages in the chat
                 setMessages(formattedMessages);
-
             } catch (error) {
                 console.error("Erreur lors de la récupération des messages de la conversation.", error);
             }
         };
 
-        // Execute this function only if currentChatId is true
         if (currentChatId) {
             fetchChatHistory();
         }
 
-        // Reset the chat if currentChatId is null
         if (!currentChatId) {
-            setMessages([]); // Empty the list of messages
+            setMessages([]);
         }
-    }, [currentChatId]); // // Watch currentChatId and re-run the effect on change
+    }, [currentChatId]);
 
-
-    // --- SCROLL EFFECT WHEN MISTRAL IS ANSWERING --- 
 
     useEffect(() => {
-
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, [messages])
 
-    }, [messages, isLoading])
-
-
-
-    // Update value in the textarea
     const handleMessage = (e) => {
         setMessage(e.target.value)
     }
 
-    // Handle key down function 
     const handleKeyDown = (e) => {
-
         if (e.key === "Enter" && !e.shiftKey) {
             e.preventDefault();
             handleSubmit(e);
         }
     }
 
-    // --- HANDLE MESSAGES SENT BY USER ---
-
     const handleSubmit = async (e) => {
-        // URL by default
         let url = `${API_URL}/chats`;
-
-        // Bodydata by default 
         let bodyData = { firstMessage: message, user_id: user.id }
 
-        e.preventDefault(); // Prevent the form event by default
+        e.preventDefault();
+        if (message.trim() === "") return;
 
-        if (message.trim() === "") return; // Prevent the user to send empty message
-
-        setIsLoading(true); // Loading is true 
-
-        const newMessage = { sender: "user", text: message }; // Get the user message from the textarea
-        setMessages((prev) => [...prev, newMessage]); // Create a copy from existing array and add the new message 
-        setMessage(''); // Textarea is cleared of its content
+        setIsLoading(true);
+        const newMessage = { sender: "user", text: message };
+        setMessages([...messages, newMessage]);
+        setMessage('');
 
         try {
-            // FETCHING TO THE GOOD URL WITH GOOD CHAT CONTENT
             if (currentChatId) {
                 url = `${API_URL}/chats/${currentChatId}/messages`;
                 bodyData = { newUserMessage: message };
             }
 
-            // FETCHING message to Mistral API 
             const response = await fetch(url,
                 {
-                    method: "POST", // Add message to database
+                    method: "POST",
                     headers: {
-                        'Content-Type': 'application/json', // JSON content sent 
+                        'Content-Type': 'application/json',
                         'Authorization': `Bearer ${localStorage.getItem('token')}`
                     },
                     body: JSON.stringify(bodyData)
@@ -123,57 +89,41 @@ export default function Chat({ currentChatId, setCurrentChatId, setChatsList, ch
 
             const data = await response.json();
 
-            console.log(data);
-
-            // Make sure that this answer is here or show error
             if (data.aiReply && data.aiReply.content) {
                 const mistralAnswer = { sender: "ai", text: data.aiReply.content };
                 setMessages((prev) => [...prev, mistralAnswer]);
-            } else {
-                console.error("Réponse de l'IA incomplète :", data);
             }
 
-            // Identify the chat of the current conversation
             if (data.chat) {
-
-                // Create title in panel only if it's the first message and a new chat
                 if (!currentChatId) {
                     setChatsList((prev) => [data.chat, ...prev]);
                 };
-
                 setCurrentChatId(data.chat.id);
             };
-
         } catch (error) {
-
             console.error("Erreur :", error);
-
         } finally {
-            setIsLoading(false); // loading becomes false at the end of the fetch
+            setIsLoading(false);
         }
     };
-
-    // --- SHOW THE TITLE CHAT ---
 
     const currentChatTitle = chatsList.find(chat => chat.id === currentChatId);
     const currentTitle = currentChatTitle ? currentChatTitle.name : "Nouveau chat";
 
     return (
+        <main className={`flex flex-col h-full relative w-full items-center p-4 ${messages.length === 0 ? "justify-center gap-4" : "gap-8"}`}>
 
-        <main className="flex flex-col gap-8 h-full relative w-full items-center p-4">
-
-            {/* CHAT MESSAGES OR WELCOME MESSAGE */}
-            <div className={`w-full flex flex-col items-center ${messages.length ? "flex-1 overflow-y-auto" : "flex-1 lg:flex-none justify-center"}`}>
+            <div className={`w-full max-w-[850px] flex flex-col items-center ${messages.length ? "flex-1 overflow-y-auto" : "flex-none"}`}>
 
                 {messages.length ? (
-                    <div className="flex flex-col w-full max-w-[850px] gap-6">
+                    <div className="flex flex-col w-full gap-6">
                         {messages.map((msg, i) => (
                             <div
                                 key={i}
-                                className={`p-4 text-sm md:text-base rounded-2xl shadow-sm
+                                className={`p-4 text-sm md:text-base
                                 ${msg.sender === "user"
-                                        ? "self-end bg-[#003c57] text-white rounded-tr-none max-w-[80%]"
-                                        : "self-start bg-gray-100 text-gray-800 rounded-tl-none max-w-[85%]"
+                                        ? "self-end bg-[#003c57] shadow-sm text-white rounded-lg rounded-tr-none max-w-[70%]"
+                                        : "self-start w-full"
                                     }`}
                             >
                                 {msg.sender === "ai" ? (
@@ -186,7 +136,6 @@ export default function Chat({ currentChatId, setCurrentChatId, setChatsList, ch
                             </div>
                         ))}
 
-                        {/* LOADER */}
                         {isLoading && (
                             <div className="self-start p-4 bg-gray-100 rounded-lg text-gray-500 italic flex items-center gap-2">
                                 <motion.div
@@ -205,7 +154,7 @@ export default function Chat({ currentChatId, setCurrentChatId, setChatsList, ch
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, ease: "backOut" }}
-                        className="flex flex-col h-full justify-center items-center">
+                        className="flex flex-col items-center">
                         <h2 className="text-center text-[20px] md:text-[28px] text-[#003C57]">Bonjour {user.username}, comment puis-je vous aider aujourd'hui ?</h2>
                         <img
                             src={mbLogo}
@@ -216,31 +165,23 @@ export default function Chat({ currentChatId, setCurrentChatId, setChatsList, ch
                 )}
             </div>
 
-            {/* CHAT INPUT */}
             <form
-                action=""
                 onSubmit={handleSubmit}
-                className="max-w-[850px] w-full border-2 border-gray-200 p-4 rounded-3xl shadow-lg bg-white mb-4"
+                className="max-w-[850px] h-[80px] md:h-[150px] w-full border-2 border-gray-200 p-4 rounded-3xl shadow-sm bg-white"
             >
-                <div className="flex h-full items-center gap-4">
-
-                    {/* USER MESSAGES */}
+                <div className="flex h-full">
                     <textarea
-                        type="text"
                         placeholder="Ecrivez votre question."
-                        className="h-full flex-1 outline-none resize-none pt-2"
+                        className="h-full flex-1 outline-none resize-none pt-0"
                         value={message}
                         onChange={handleMessage}
                         onKeyDown={handleKeyDown}
                     />
-
-                    {/* BUTTON TO SEND MESSAGE */}
                     <button
-                        className={`self-end p-3 rounded-full transition-colors ${isLoading ? "bg-gray-300" : "bg-[#f8532a] cursor-pointer"}`}
+                        className="self-end cursor-pointer bg-[#f8532a] p-2"
                         type="submit"
-                        disabled={isLoading}
                     >
-                        <FaArrowUp className="text-white text-base" />
+                        <FaArrowUp className="text-[12px] text-white md:text-base" />
                     </button>
                 </div>
             </form>
