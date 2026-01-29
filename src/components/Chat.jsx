@@ -5,10 +5,8 @@ import mbLogo from '../assets/mbLogo.png'
 
 export default function Chat({ currentChatId, setCurrentChatId, setChatsList, chatsList, user }) {
 
-    // Data simulation : 
-    const chatTest = [
-        { sender: "ai", text: "Bonjour, comment puis-je vous aider aujourd'hui ? 😊" },
-    ]
+    // --- API URL --- 
+    const API_URL = import.meta.env.VITE_API_URL
 
     // --- DEFINE THE STATES --- 
     const [messages, setMessages] = useState(chatTest);
@@ -25,7 +23,7 @@ export default function Chat({ currentChatId, setCurrentChatId, setChatsList, ch
         const fetchChatHistory = async () => {
 
             try {
-                const response = await fetch(`http://localhost:3001/api/chats/${currentChatId}/messages`, {
+                const response = await fetch(`${API_URL}/chats/${currentChatId}/messages`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': "application/json",
@@ -88,7 +86,7 @@ export default function Chat({ currentChatId, setCurrentChatId, setChatsList, ch
 
     const handleSubmit = async (e) => {
         // URL by default
-        let url = 'http://localhost:3001/api/chats';
+        let url = `${API_URL}/chats`;
 
         // Bodydata by default 
         let bodyData = { firstMessage: message, user_id: 1 }
@@ -105,7 +103,7 @@ export default function Chat({ currentChatId, setCurrentChatId, setChatsList, ch
 
         // FETCHING TO THE GOOD URL WITH GOOD CHAT CONTENT
         if (currentChatId) {
-            url = `http://localhost:3001/api/chats/${currentChatId}/messages`;
+            url = `${API_URL}/chats/${currentChatId}/messages`;
             bodyData = { newUserMessage: message };
         }
 
