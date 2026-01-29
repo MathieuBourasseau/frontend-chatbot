@@ -160,7 +160,7 @@ export default function Chat({ currentChatId, setCurrentChatId, setChatsList, ch
 
     return (
 
-        <main className={`flex flex-col gap-8 h-full relative w-full items-center ${messages.length === 0 ? "lg:justify-center" : ""} p-4`}>
+        <main className={`flex flex-col gap-8 h-full relative w-full ${messages.length === 0 ? "items-center justify-center" : "items-start"} p-4`}>
 
             {/* CHAT MESSAGES OR WELCOME MESSAGE */}
             <div className={`${messages.length ? "flex-1 overflow-y-auto" : "flex-1 lg:flex-none"}`}>
