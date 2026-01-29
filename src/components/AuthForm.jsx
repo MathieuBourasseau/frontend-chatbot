@@ -7,7 +7,7 @@ import { IoMdEyeOff } from "react-icons/io";
 import ParticlesBackground from "./ParticlesBackground";
 import { useNavigate } from "react-router-dom";
 import { AiOutlinePicture } from "react-icons/ai";
-import { GoAlert } from "react-icons/go";
+import { LuTriangleAlert } from "react-icons/lu";
 
 export default function AuthForm({ setUser }) {
 
@@ -362,23 +362,25 @@ export default function AuthForm({ setUser }) {
             </form>
 
             {/* SUCCESS OR ERROR MESSAGE */}
-            <span
-                className="flex items-center border-1 border-gray-300 text-gray-300 gap-2 rounded-full text-sm p-2"
-            >
-                {successMessage ? (
-                    <>
-                        {successMessage}
-                        < FaCheckCircle />
-                    </>
 
-                ) : (
-                    <>
-                        {errorMessage}
-                        <GoAlert />
-                    </>
-                )}
-            </span>
+            {(successMessage || errorMessage) && (
+                <span
+                    className="flex items-center border-1 border-gray-300 text-gray-300 gap-2 rounded-full text-sm p-2"
+                >
+                    {successMessage ? (
+                        <>
+                            {successMessage}
+                            < FaCheckCircle />
+                        </>
 
+                    ) : (
+                        <>
+                            {errorMessage}
+                            <LuTriangleAlert />
+                        </>
+                    )}
+                </span>
+            )}
         </div>
     )
 }
