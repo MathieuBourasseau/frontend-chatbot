@@ -13,6 +13,8 @@ function App() {
   const [user, setUser] = useState(null); // No user by default
   const [isOpen, setIsOpen] = useState(false);  // Menu is closed by default
 
+  const API_URL = import.meta.env.VITE_API_URL
+
   // --- VERIFY IF A TOKEN EXISTS AND IF IT IS NOT EXPIRED ---
   useEffect(() => {
 
@@ -24,10 +26,12 @@ function App() {
       // Stop here if token does not exist
       if (!token) return;
 
+      
+
       // Fetch to verify the token
       try {
 
-        const response = await fetch('http://localhost:3001/api/me', {
+        const response = await fetch(`${API_URL}/me`, {
           method: 'GET',
           headers: {
             "Authorization": `Bearer ${token}`
@@ -57,7 +61,7 @@ function App() {
     const fetchChatsHistory = async () => {
 
       try {
-        const response = await fetch('http://localhost:3001/api/chats', {
+        const response = await fetch(`${API_URL}/chats`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
