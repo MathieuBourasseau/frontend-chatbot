@@ -6,15 +6,20 @@ import ReactMarkdown from 'react-markdown'
 
 export default function Chat({ currentChatId, setCurrentChatId, setChatsList, chatsList, user }) {
 
+    // Use env variable 
     const API_URL = import.meta.env.VITE_API_URL
 
+    // --- DEFINE STATES ---
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
+    // Screen goes to the last message of the chat
     const messagesEndRef = useRef(null)
 
+    // --- LOAD CHAT HISTORY ---
     useEffect(() => {
+
         const fetchChatHistory = async () => {
 
             // Get the token
@@ -61,9 +66,11 @@ export default function Chat({ currentChatId, setCurrentChatId, setChatsList, ch
     }, [currentChatId]);
 
 
+    // Scroll to the last message
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages])
+
 
     const handleMessage = (e) => {
         setMessage(e.target.value)
@@ -76,7 +83,9 @@ export default function Chat({ currentChatId, setCurrentChatId, setChatsList, ch
         }
     }
 
+    // --- HANDLE SUBMIT FORM ---
     const handleSubmit = async (e) => {
+
         let url = `${API_URL}/chats`;
         let bodyData = { firstMessage: message, user_id: user.id }
 
@@ -84,7 +93,9 @@ export default function Chat({ currentChatId, setCurrentChatId, setChatsList, ch
         if (message.trim() === "") return;
 
         setIsLoading(true);
+
         const newMessage = { sender: "user", text: message };
+
         setMessages([...messages, newMessage]);
         setMessage('');
 
@@ -112,15 +123,27 @@ export default function Chat({ currentChatId, setCurrentChatId, setChatsList, ch
             }
 
             if (data.chat) {
+
                 if (!currentChatId) {
                     setChatsList((prev) => [data.chat, ...prev]);
                 };
-                setCurrentChatId(data.chat.id);
+
+                setTimeout(() => {
+                    
+                    setCurrentChatId(data.chat.id);
+
+                }, 500);
+
             };
+
         } catch (error) {
+
             console.error("Erreur :", error);
+
         } finally {
+
             setIsLoading(false);
+            
         }
     };
 
