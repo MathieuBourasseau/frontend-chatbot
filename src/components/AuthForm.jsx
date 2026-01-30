@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { AiOutlinePicture } from "react-icons/ai";
 import { LuTriangleAlert } from "react-icons/lu";
 
-export default function AuthForm({ setUser }) {
+export default function AuthForm({ setUser, setCurrentChatId }) {
 
     // --- DEFINE STATES --- 
     const [isRegister, setIsRegister] = useState(false); // User is not connected by default
@@ -172,10 +172,16 @@ export default function AuthForm({ setUser }) {
             // Save token to localStorage, reset the success message and redirect toward user Chat
 
             setTimeout(() => {
+
                 localStorage.setItem("token", data.token);
+                sessionStorage.removeItem("currentChatId");
+
+                setCurrentChatId(null);
+                
                 setUser(data.user);
                 setSuccessMessage('');
                 navigate('/')
+
             }, 2000);
         }
 

@@ -14,18 +14,23 @@ function App() {
   const [currentChatId, setCurrentChatId] = useState(() => {
     return sessionStorage.getItem('currentChatId') || null;
   });
+  
+  const API_URL = import.meta.env.VITE_API_URL
 
   // --- SAVE CURRENT CHAT ID IN SESSION ---
   useEffect(() => {
+
     if (currentChatId) {
+
       sessionStorage.setItem('currentChatId', currentChatId);
+
     } else {
+
       sessionStorage.removeItem('currentChatId');
     }
   }, [currentChatId]);
 
 
-  const API_URL = import.meta.env.VITE_API_URL
 
   // --- VERIFY IF A TOKEN EXISTS AND IF IT IS NOT EXPIRED ---
   useEffect(() => {
@@ -119,7 +124,7 @@ function App() {
       <Routes>
         {!user ? (
           <>
-            <Route path="/login" element={<AuthForm setUser={setUser} />} />
+            <Route path="/login" element={<AuthForm setUser={setUser} setCurrentChatId={setCurrentChatId} />} />
             <Route path="/reset-password/:token" element={<ResetPassword />} />
             <Route path="*" element={<Navigate to="/login" />} />
           </>
