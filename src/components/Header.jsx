@@ -19,7 +19,8 @@ export default function Header({ isOpen, setIsOpen, currentChatId, chatsList, us
 
         setTimeout(() => {
             setIsDisconnected(false);
-            localStorage.removeItem("token")
+            localStorage.removeItem("token");
+            sessionStorage.removeItem("currentChatId");
             setUser(null);
 
         }, 1000)

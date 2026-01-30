@@ -8,10 +8,22 @@ import { Routes, Route, Navigate } from "react-router-dom";
 function App() {
 
   // --- DEFINE THE STATES ---
-  const [currentChatId, setCurrentChatId] = useState(null);
   const [chatsList, setChatsList] = useState([]);
   const [user, setUser] = useState(null); // No user by default
   const [isOpen, setIsOpen] = useState(false);  // Menu is closed by default
+  const [currentChatId, setCurrentChatId] = useState(() => {
+    return sessionStorage.getItem('currentChatId') || null;
+  });
+
+  // --- SAVE CURRENT CHAT ID IN SESSION ---
+  useEffect(() => {
+    if (currentChatId) {
+      sessionStorage.setItem('currentChatId', currentChatId);
+    } else {
+      sessionStorage.removeItem('currentChatId');
+    }
+  }, [currentChatId]);
+
 
   const API_URL = import.meta.env.VITE_API_URL
 
@@ -43,8 +55,7 @@ function App() {
 
           const data = await response.json();
           setUser(data.user);
-          setCurrentChatId(null);
-          
+
         } else {
           localStorage.removeItem('token');
         }
@@ -81,7 +92,7 @@ function App() {
         if (response.ok && Array.isArray(data)) {
 
           setChatsList(data);
-          
+
         } else {
           // if there is an arror we update chat lists to empty
           console.error("Erreur API ou format de données incorrect :", data);
