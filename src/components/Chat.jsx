@@ -129,7 +129,7 @@ export default function Chat({ currentChatId, setCurrentChatId, setChatsList, ch
                 };
 
                 setTimeout(() => {
-                    
+
                     setCurrentChatId(data.chat.id);
 
                 }, 500);
@@ -143,13 +143,16 @@ export default function Chat({ currentChatId, setCurrentChatId, setChatsList, ch
         } finally {
 
             setIsLoading(false);
-            
+
         }
     };
 
-    const currentChatTitle = chatsList.find(chat => chat.id === currentChatId);
-    const currentTitle = currentChatTitle ? currentChatTitle.name : "Nouveau chat";
+    const currentChatTitle = chatsList.find(chat => Number(chat.id) === Number(currentChatId));
+    const currentTitle = currentChatId
+        ? (currentChatTitle ? currentChatTitle.name : "Chargement du titre...")
+        : "Nouveau chat";
 
+        
     return (
         <main className={`flex flex-col h-full relative w-full items-center p-4 ${messages?.length === 0 ? "justify-center gap-4" : "gap-8"}`}>
 

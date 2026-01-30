@@ -11,8 +11,8 @@ export default function Header({ isOpen, setIsOpen, currentChatId, chatsList, us
     const navigate = useNavigate();
 
     // --- FIND CURRENT CHAT AND ITS TITLE
-    const currentChat = chatsList ? chatsList.find(c => c.id === currentChatId) : null;
-    const currentTitle = currentChat ? currentChat.name : "Projet LLM";
+    const currentChat = chatsList ? chatsList.find(c => Number(c.id) === Number(currentChatId)) : null;
+    const currentTitle = currentChat ? currentChat.name : (currentChatId ? "Chargement..." : "Projet LLM");
 
     // --- HANDLE LOG OUT ---
     const handleLogOut = () => {
