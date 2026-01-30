@@ -1,16 +1,56 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 🎨 Mistral Chat - Interface React Professional
 
-Currently, two official plugins are available:
+Une interface de chat moderne, réactive et élégante, conçue pour interagir avec l'IA de Mistral. Ce projet a été développé pour offrir une expérience utilisateur (**UX**) fluide, proche des standards des meilleures IA actuelles.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Fonctionnalités clés
 
-## React Compiler
+* **💬 Interface de Chat Intuitive** : Design épuré inspiré de ChatGPT/Claude/Gemini pour une prise en main immédiate.
+* **🧩 Gestion de Session Intelligente** : Utilisation du `sessionStorage` pour conserver la conversation active lors d'un rafraîchissement (F5), tout en réinitialisant l'accueil lors d'une nouvelle connexion.
+* **📱 Design Responsive** : Interface "Mobile-First" avec une barre latérale (Sidebar) coulissante et un Header adaptatif.
+* **🔐 Authentification Complète** : Protection des routes, gestion des Tokens JWT et persistance de l'utilisateur.
+* **🖌️ Rendu Markdown** : Support complet du formatage (gras, listes, titres, blocs de code) pour les réponses de l'IA via `react-markdown`.
+* **✨ Animations Premium** : Transitions soignées avec **Framer Motion** pour les messages et les menus.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Stack Technique
 
-## Expanding the ESLint configuration
+* **React 18** (Vite.js)
+* **Tailwind CSS** (Design et mise en page)
+* **Framer Motion** (Animations et micro-interactions)
+* **React Router Dom** (Navigation et protection des routes)
+* **React Icons** (Iconographie Lucide & FontAwesome)
+* **React Markdown** (Interprétation du texte IA)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🚀 Installation et Lancement
+
+1.  **Cloner le dépôt** :
+    ```bash
+    git clone [https://github.com/votre-compte/votre-repo-frontend.git](https://github.com/votre-compte/votre-repo-frontend.git)
+    cd votre-repo-frontend
+    ```
+
+2.  **Installer les dépendances** :
+    ```bash
+    npm install
+    ```
+
+3.  **Configurer les variables d'environnement** :
+    Créez un fichier `.env` à la racine du projet :
+    ```env
+    VITE_API_URL=[https://votre-api-backend.onrender.com/api](https://votre-api-backend.onrender.com/api)
+    ```
+
+4.  **Lancer le projet en mode développement** :
+    ```bash
+    npm run dev
+    ```
+
+## 🧠 Défis Techniques Relevés
+
+* **Résolution des "Race Conditions"** : Mise en place d'un délai de sécurité (`setTimeout`) lors de la création de chat pour compenser la latence des bases de données sur hébergement gratuit (Render).
+* **Synchronisation des types de données** : Gestion de la persistance via `sessionStorage` en corrigeant les conflits de types (String vs Number) pour assurer l'affichage du titre au rafraîchissement.
+* **Optimisation de l'Espace** : Intégration de RegEx côté Backend pour formater les réponses et garantir un affichage aéré et structuré dans le Frontend.
+
+---
+
+*Développé avec passion dans le cadre d'un projet Fullstack Portfolio.*
