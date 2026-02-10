@@ -1,5 +1,5 @@
 
-# 🎨 Mistral Chat - Interface React professionnelle
+# 🎨 Chat interactif réalisé avec l'API Mistral
 
 Une interface de chat moderne, réactive et élégante, conçue pour interagir avec l'IA de Mistral. Ce projet a été développé pour offrir une expérience utilisateur (**UX**) fluide, proche des standards des meilleures IA actuelles.
 
