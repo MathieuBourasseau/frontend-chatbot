@@ -97,10 +97,10 @@ export default function Header({ isOpen, setIsOpen, currentChatId, chatsList, us
                 {/* SHOW USER AVATAR */}
                 {user.avatar ? (
                     <span
-                        className="cursor-pointer w-10 h-10 rounded-full flex items-center justify-center border border-[#003C57] shadow-sm"
+                        className="cursor-pointer w-10 h-10 rounded-full flex items-center justify-center border border-[#003C57] shadow-sm overflow-hidden"
                         onClick={() => setIsDisconnected(!isDisconnected)}
                     >
-                        <img src={user.avatar} alt="Avatar de l'utilisateur" />
+                        <img src={user.avatar} alt="Avatar de l'utilisateur" className="w-full h-full object-cover" />
                     </span>
                 ) : (
                     <span
